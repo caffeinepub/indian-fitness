@@ -7,18 +7,26 @@
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-update-all-user-facing-location-text-across-the-frontend-to-reflect-the-kekri-rajasthan-location-instead-of-mumbai-including-the-visit-us-section-copy-page-seo-titles-descriptions-and-any-other-hardcoded-mentions-of-mumbai-the-mumbai-address-or-the-old-phone-number",
-      "title": "Update all user-facing location text across the frontend to reflect the Kekri, Rajasthan location instead of Mumbai, including the “Visit Us” section copy, page SEO titles/descriptions, and any other hardcoded mentions of “Mumbai”, the Mumbai address, or the old phone number.",
+      "id": "feature-set-the-global-default-text-color-to-pure-white-across-the-entire-react-app-by-updating-the-tailwind-color-tokens-so-that-text-foreground-renders-white-in-both-light-and-dark-modes",
+      "title": "Set the global default text color to pure white across the entire React app by updating the Tailwind color tokens so that `text-foreground` renders white in both light and dark modes.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-ensure-the-kekri-address-contact-information-and-map-embed-are-sourced-from-the-shared-marketing-configuration-so-that-footer-contact-page-map-embed-and-any-visit-us-blocks-stay-consistent",
-      "title": "Ensure the Kekri address/contact information and map embed are sourced from the shared marketing configuration so that Footer, Contact page, map embed, and any ‘Visit Us’ blocks stay consistent.",
+      "id": "feature-ensure-all-user-visible-text-remains-white-even-where-components-currently-apply-explicit-non-white-text-utility-classes-e-g-text-muted-foreground-text-primary-hover-text-primary-text-green-accent-text-gold-including-interactive-states-such-as-hover-and-focus",
+      "title": "Ensure all user-visible text remains white even where components currently apply explicit non-white text utility classes (e.g., `text-muted-foreground`, `text-primary`, `hover:text-primary`, `text-green-accent`, `text-gold`), including interactive states such as hover and focus.",
       "reqIds": [
         "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-same-white-foreground-token-update-consistently-in-all-active-global-stylesheet-entrypoints-used-by-the-frontend-build-including-both-frontend-src-index-css-and-frontend-index-css-if-the-project-still-ships-both-so-there-is-no-environment-dependent-mismatch-in-text-color",
+      "title": "Apply the same white-foreground token update consistently in all active global stylesheet entrypoints used by the frontend build (including both `frontend/src/index.css` and `frontend/index.css` if the project still ships both), so there is no environment-dependent mismatch in text color.",
+      "reqIds": [
+        "REQ-3"
       ],
       "version": 1
     }
@@ -26,20 +34,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update all “Visit Us” address/contact text and map location from Mumbai to Kekri, Rajasthan (1st Floor K.J Tower, Above B.O.B Bank, Ajmer Road, Kekri)",
+      "summary": "Change all font/text color across the entire app to white (global styling/theme)",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Update MARKETING_CONFIG to match the user-provided Kekri location details (Visit Us in Kekri; 1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri; Kekri, Rajasthan) and ensure the configured phone number matches the intended contact number for the updated location.",
-      "reqIds": [
-        "REQ-3"
-      ],
       "status": "pending"
     }
   ],
-  "projectName": "Update all site location/contact copy and map to Kekri (replace Mumbai)",
+  "projectName": "Change all text across the app to white (global font color)",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

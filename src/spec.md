@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update all site location/contact details and map references from Mumbai to Kekri, Rajasthan, using the shared marketing configuration for consistent rendering across the frontend.
+**Goal:** Make all user-visible text across the app render in pure white by setting the global `text-foreground` token to white and ensuring no components override it with non-white text utilities.
 
 **Planned changes:**
-- Update `MARKETING_CONFIG` to the Kekri location details: “Visit Us in Kekri”; “1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri”; “Kekri, Rajasthan” (and ensure the configured phone number matches the intended Kekri contact number).
-- Replace any remaining hardcoded “Mumbai”, the old Mumbai address, and the old phone number across all pages (including the About “Visit Us” section and any other user-facing copy).
-- Update SEO titles/descriptions that reference Mumbai to reference Kekri, preferably sourcing city/location strings from `MARKETING_CONFIG`.
-- Ensure Footer, Contact page address/phone, About “Visit Us” block, and Google Maps iframe (URL + iframe title) are all sourced from `MARKETING_CONFIG`, including `googleMapsEmbedUrl` and `location.fullLocation`.
+- Update Tailwind/theme color tokens so `text-foreground` resolves to pure white in both light and dark modes, keeping `body` using `@apply ... text-foreground`.
+- Audit and adjust any explicit non-white text utility usages (including hover/focus/active states) so navigation, footer, CTA areas, and form text remain white.
+- Apply the same white-foreground token update consistently across all active global CSS entrypoints used by the build (including `frontend/src/index.css` and `frontend/index.css` if both are in use) to avoid environment-dependent mismatches.
 
-**User-visible outcome:** The website consistently shows the Kekri, Rajasthan address and contact info (with an updated map), and no page displays “Mumbai” or the old Mumbai address/phone number.
+**User-visible outcome:** All pages (Home, About, Programs, Café, Membership, Contact) display white text by default, including interactive states (hover/focus), without layout or spacing changes.

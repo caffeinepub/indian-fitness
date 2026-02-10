@@ -2,13 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-all-user-facing-location-text-across-the-frontend-to-reflect-the-kekri-rajasthan-location-instead-of-mumbai-including-the-visit-us-section-copy-page-seo-titles-descriptions-and-any-other-hardcoded-mentions-of-mumbai-the-mumbai-address-or-the-old-phone-number",
-      "featureTitle": "Update all user-facing location text across the frontend to reflect the Kekri, Rajasthan location instead of Mumbai, including the “Visit Us” section copy, page SEO titles/descriptions, and any other hardcoded mentions of “Mumbai”, the Mumbai address, or the old phone number.",
+      "featureId": "feature-set-the-global-default-text-color-to-pure-white-across-the-entire-react-app-by-updating-the-tailwind-color-tokens-so-that-text-foreground-renders-white-in-both-light-and-dark-modes",
+      "featureTitle": "Set the global default text color to pure white across the entire React app by updating the Tailwind color tokens so that `text-foreground` renders white in both light and dark modes.",
       "files": [
-        "frontend/src/pages/AboutPage.tsx",
-        "frontend/src/pages/CafePage.tsx",
-        "frontend/src/pages/MembershipPlansPage.tsx",
-        "frontend/src/pages/ProgramsPage.tsx"
+        "frontend/src/index.css"
       ],
       "components": [
         "authorization@4.0.0",
@@ -24,10 +21,15 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-ensure-the-kekri-address-contact-information-and-map-embed-are-sourced-from-the-shared-marketing-configuration-so-that-footer-contact-page-map-embed-and-any-visit-us-blocks-stay-consistent",
-      "featureTitle": "Ensure the Kekri address/contact information and map embed are sourced from the shared marketing configuration so that Footer, Contact page, map embed, and any ‘Visit Us’ blocks stay consistent.",
+      "featureId": "feature-ensure-all-user-visible-text-remains-white-even-where-components-currently-apply-explicit-non-white-text-utility-classes-e-g-text-muted-foreground-text-primary-hover-text-primary-text-green-accent-text-gold-including-interactive-states-such-as-hover-and-focus",
+      "featureTitle": "Ensure all user-visible text remains white even where components currently apply explicit non-white text utility classes (e.g., `text-muted-foreground`, `text-primary`, `hover:text-primary`, `text-green-accent`, `text-gold`), including interactive states such as hover and focus.",
       "files": [
-        "frontend/src/pages/AboutPage.tsx"
+        "frontend/src/components/conversion/StickyMobileCTA.tsx",
+        "frontend/src/components/layout/Footer.tsx",
+        "frontend/src/components/layout/Header.tsx",
+        "frontend/src/components/sections/LeadForm.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -39,6 +41,26 @@
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-same-white-foreground-token-update-consistently-in-all-active-global-stylesheet-entrypoints-used-by-the-frontend-build-including-both-frontend-src-index-css-and-frontend-index-css-if-the-project-still-ships-both-so-there-is-no-environment-dependent-mismatch-in-text-color",
+      "featureTitle": "Apply the same white-foreground token update consistently in all active global stylesheet entrypoints used by the frontend build (including both `frontend/src/index.css` and `frontend/index.css` if the project still ships both), so there is no environment-dependent mismatch in text color.",
+      "files": [
+        "frontend/index.css",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
       ],
       "confidence": "high"
     }

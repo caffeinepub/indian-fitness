@@ -21,36 +21,36 @@ export default function Footer() {
                 alt={BRANDING.logo.alt}
                 className="h-10 w-10"
               />
-              <span className="text-lg font-bold text-green-accent">{BRANDING.companyName}</span>
+              <span className="text-lg font-bold text-foreground">{BRANDING.companyName}</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground">
               Premium unisex gym & fitness studio. Transform your body, elevate your life.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-green-accent">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">
               Quick Links
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-green-accent transition-colors">
+                <Link to="/about" className="text-foreground hover:text-foreground hover:underline transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/programs" className="text-muted-foreground hover:text-green-accent transition-colors">
+                <Link to="/programs" className="text-foreground hover:text-foreground hover:underline transition-colors">
                   Programs
                 </Link>
               </li>
               <li>
-                <Link to="/membership" className="text-muted-foreground hover:text-green-accent transition-colors">
+                <Link to="/membership" className="text-foreground hover:text-foreground hover:underline transition-colors">
                   Membership Plans
                 </Link>
               </li>
               <li>
-                <Link to="/cafe" className="text-muted-foreground hover:text-green-accent transition-colors">
+                <Link to="/cafe" className="text-foreground hover:text-foreground hover:underline transition-colors">
                   Café
                 </Link>
               </li>
@@ -59,20 +59,20 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-green-accent">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">
               Contact
             </h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-sm text-foreground">
               <li>{MARKETING_CONFIG.address}</li>
               <li>{MARKETING_CONFIG.city}, {MARKETING_CONFIG.state}</li>
               <li>{MARKETING_CONFIG.country}</li>
               <li className="pt-2">
-                <a href={`tel:${MARKETING_CONFIG.phone}`} className="hover:text-green-accent transition-colors">
+                <a href={`tel:${MARKETING_CONFIG.phone}`} className="text-foreground hover:text-foreground hover:underline transition-colors">
                   {MARKETING_CONFIG.phoneFormatted}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${MARKETING_CONFIG.email}`} className="hover:text-green-accent transition-colors">
+                <a href={`mailto:${MARKETING_CONFIG.email}`} className="text-foreground hover:text-foreground hover:underline transition-colors">
                   {MARKETING_CONFIG.email}
                 </a>
               </li>
@@ -81,7 +81,7 @@ export default function Footer() {
 
           {/* Social & Hours */}
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-green-accent">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">
               Follow Us
             </h3>
             <div className="mb-4 flex gap-3">
@@ -89,7 +89,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-green-accent transition-colors"
+                className="text-foreground hover:text-foreground transition-colors"
                 aria-label="Facebook"
               >
                 <SiFacebook className="h-5 w-5" />
@@ -98,7 +98,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-green-accent transition-colors"
+                className="text-foreground hover:text-foreground transition-colors"
                 aria-label="Instagram"
               >
                 <SiInstagram className="h-5 w-5" />
@@ -107,13 +107,13 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-green-accent transition-colors"
+                className="text-foreground hover:text-foreground transition-colors"
                 aria-label="X (Twitter)"
               >
                 <SiX className="h-5 w-5" />
               </a>
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-foreground">
               <p className="font-semibold text-foreground">Hours</p>
               {MARKETING_CONFIG.workingHours.displayLines.map((line, index) => (
                 <p key={index}>{line}</p>
@@ -122,14 +122,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-foreground">
           <p>
-            © {new Date().getFullYear()}. Built with <Heart className="inline h-4 w-4 text-green-accent" /> using{' '}
+            © {new Date().getFullYear()}. Built with <Heart className="inline h-4 w-4 text-foreground" /> using{' '}
             <a
               href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-accent hover:underline"
+              className="text-foreground hover:underline"
             >
               caffeine.ai
             </a>

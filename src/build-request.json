@@ -1,92 +1,76 @@
 {
   "kind": "build_request",
-  "title": "Update all site location/contact copy and map to Kekri (replace Mumbai)",
+  "title": "Change all text across the app to white (global font color)",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update all user-facing location text across the frontend to reflect the Kekri, Rajasthan location instead of Mumbai, including the “Visit Us” section copy, page SEO titles/descriptions, and any other hardcoded mentions of “Mumbai”, the Mumbai address, or the old phone number.",
+      "text": "Set the global default text color to pure white across the entire React app by updating the Tailwind color tokens so that `text-foreground` renders white in both light and dark modes.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3",
-          "msg-5"
+          "recent-7",
+          "recent-8"
         ],
         "quotes": [
-          "change the discription: Visit Us in Kekri",
-          "yes all are update for kekri location"
-        ]
-      },
-      "acceptanceCriteria": [
-        "No page in the UI displays the words “Mumbai” or the old Mumbai address (“123 Fitness Street, Mumbai, Maharashtra 400001, India”).",
-        "About page ‘Visit Us’ section displays: ‘Visit Us in Kekri’ and the Kekri address provided by the user (1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri, Kekri, Rajasthan).",
-        "Any phone number shown in the UI is consistent with the location update and does not show the old number +91 98765 43210 unless it is the configured number for Kekri.",
-        "SEO titles/descriptions on pages that currently reference Mumbai are updated to reference Kekri (preferably using MARKETING_CONFIG.location.displayName/fullLocation rather than hardcoded city strings)."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Ensure the Kekri address/contact information and map embed are sourced from the shared marketing configuration so that Footer, Contact page, map embed, and any ‘Visit Us’ blocks stay consistent.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-5",
-          "msg-6"
-        ],
-        "quotes": [
-          "yes all are update for kekri location",
+          "change to colour of all font to white",
           "apply"
         ]
       },
       "acceptanceCriteria": [
-        "About page ‘Visit Us’ section uses MARKETING_CONFIG fields (address/city/state/country/phone/phoneFormatted) instead of hardcoded Mumbai strings.",
-        "Footer contact block continues to render from MARKETING_CONFIG and shows the Kekri address.",
-        "Contact page address card and phone link render the Kekri details from MARKETING_CONFIG.",
-        "Map iframe uses MARKETING_CONFIG.googleMapsEmbedUrl and the iframe title references Kekri via MARKETING_CONFIG.location.fullLocation."
+        "All pages (Home, About, Programs, Café, Membership, Contact) render default body text in white without requiring per-component changes.",
+        "In both light and dark mode, `body` continues to use `@apply ... text-foreground`, and the resolved `foreground` color is white.",
+        "No regressions to layout/spacing occur as a result of the color token changes."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Ensure all user-visible text remains white even where components currently apply explicit non-white text utility classes (e.g., `text-muted-foreground`, `text-primary`, `hover:text-primary`, `text-green-accent`, `text-gold`), including interactive states such as hover and focus.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-7"
+        ],
+        "quotes": [
+          "change to colour of all font to white"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigation labels in the header remain white in normal, active, and hover states.",
+        "Footer link text and footer meta text remain white in normal and hover states, and icons/text that were previously yellow accent (e.g., `text-primary`) are updated to white.",
+        "Text in CTA areas (buttons, banners, forms) remains white unless the text is part of a non-text graphic (e.g., an image)."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Update MARKETING_CONFIG to match the user-provided Kekri location details (Visit Us in Kekri; 1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri; Kekri, Rajasthan) and ensure the configured phone number matches the intended contact number for the updated location.",
+      "text": "Apply the same white-foreground token update consistently in all active global stylesheet entrypoints used by the frontend build (including both `frontend/src/index.css` and `frontend/index.css` if the project still ships both), so there is no environment-dependent mismatch in text color.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3",
-          "msg-5"
+          "recent-8"
         ],
         "quotes": [
-          "Visit Us in Kekri\n1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri\nKekri, Rajasthan",
-          "yes all are update for kekri location"
+          "apply"
         ]
       },
       "acceptanceCriteria": [
-        "MARKETING_CONFIG.address/city/state/country reflect the Kekri address provided by the user.",
-        "All tel: links and displayed phone formatting across the site match the phone configured in MARKETING_CONFIG.",
-        "No remaining components/pages display a different address than MARKETING_CONFIG."
+        "The app renders white text consistently in local dev and production builds.",
+        "There is a single, consistent source of truth for the white foreground token across global CSS files used by the build."
       ]
     }
   ],
   "constraints": [
-    "Frontend immutablePaths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose only).",
-    "Keep backend as a single Motoko actor; no backend changes are required for this location update."
+    "Do not modify files under `frontend/src/components/ui` (compose them instead of editing).",
+    "Do not edit immutable auth/actor bootstrap hooks: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, and `frontend/src/main.tsx`.",
+    "Backend remains single-actor Motoko; no backend changes are required for this request."
   ],
   "nonGoals": [
-    "Adding new pages or new features unrelated to the location/contact update.",
-    "Changing branding, pricing, trainers, or program offerings.",
-    "Implementing third-party integrations beyond the existing Google Maps embed URL usage."
+    "Changing background colors, button background colors, or the overall yellow branding theme (beyond making text white).",
+    "Adding new pages, routes, or features unrelated to text color.",
+    "Any backend schema/state changes or migrations."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

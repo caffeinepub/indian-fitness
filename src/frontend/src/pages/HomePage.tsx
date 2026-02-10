@@ -28,7 +28,7 @@ export default function HomePage() {
 
         <div className="container relative z-10 mx-auto px-4 py-20 text-center">
           <h1 className="mb-8 text-5xl font-black uppercase tracking-tighter text-white md:text-7xl lg:text-8xl" style={{ fontStyle: 'italic', letterSpacing: '-0.02em' }}>
-            BE YOUR <span className="text-green-accent">BEST</span>
+            BE YOUR <span className="text-white">BEST</span>
           </h1>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link to="/contact">
@@ -43,10 +43,10 @@ export default function HomePage() {
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-card/50">
         <div className="container mx-auto px-4">
-          <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight md:text-4xl">
+          <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight md:text-4xl text-foreground">
             Our <span className="text-green-accent">Services</span>
           </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-muted-foreground">
+          <p className="mx-auto mb-12 max-w-2xl text-center text-foreground">
             Everything you need to achieve your fitness goals under one roof
           </p>
 
@@ -56,10 +56,10 @@ export default function HomePage() {
                 <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-green-accent/10">
                   <Dumbbell className="h-10 w-10 text-green-accent" />
                 </div>
-                <CardTitle className="text-2xl font-black uppercase">Gym</CardTitle>
+                <CardTitle className="text-2xl font-black uppercase text-foreground">Gym</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <CardDescription className="mb-4">
+                <CardDescription className="mb-4 text-foreground">
                   State-of-the-art equipment, strength training, cardio zones, and expert guidance for all fitness levels.
                 </CardDescription>
                 <Link to="/programs">
@@ -76,10 +76,10 @@ export default function HomePage() {
                 <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-green-accent/10">
                   <Music className="h-10 w-10 text-green-accent" />
                 </div>
-                <CardTitle className="text-2xl font-black uppercase">Zumba</CardTitle>
+                <CardTitle className="text-2xl font-black uppercase text-foreground">Zumba</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <CardDescription className="mb-4">
+                <CardDescription className="mb-4 text-foreground">
                   High-energy dance fitness classes that make working out fun. Burn calories while dancing to great music.
                 </CardDescription>
                 <Link to="/programs">
@@ -96,11 +96,11 @@ export default function HomePage() {
                 <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-green-accent/10">
                   <Coffee className="h-10 w-10 text-green-accent" />
                 </div>
-                <CardTitle className="text-2xl font-black uppercase">Café</CardTitle>
+                <CardTitle className="text-2xl font-black uppercase text-foreground">Café</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <CardDescription className="mb-4">
-                  Healthy nutrition bar with protein shakes, smoothies, and meal plans to fuel your fitness journey.
+                <CardDescription className="mb-4 text-foreground">
+                  Healthy nutrition options including protein shakes, smoothies, and balanced meal plans to fuel your fitness.
                 </CardDescription>
                 <Link to="/cafe">
                   <Button variant="ghost" className="gap-2 text-green-accent hover:text-green-accent">
@@ -117,38 +117,41 @@ export default function HomePage() {
       {/* Why Choose Us */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <h2 className="mb-12 text-center text-3xl font-black uppercase tracking-tight md:text-4xl">
+          <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight md:text-4xl text-foreground">
             Why Choose <span className="text-green-accent">Indian Fitness</span>
           </h2>
+          <p className="mx-auto mb-12 max-w-2xl text-center text-foreground">
+            We're more than just a gym - we're your fitness family
+          </p>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-accent/10">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-accent/10">
                 <Award className="h-8 w-8 text-green-accent" />
               </div>
-              <h3 className="mb-2 text-xl font-bold">Expert Trainers</h3>
-              <p className="text-muted-foreground">
-                Certified professionals with years of experience in fitness and nutrition
+              <h3 className="mb-2 text-xl font-bold text-foreground">Expert Trainers</h3>
+              <p className="text-foreground">
+                Certified professionals dedicated to helping you reach your goals safely and effectively.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-accent/10">
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-accent/10">
                 <Users className="h-8 w-8 text-green-accent" />
               </div>
-              <h3 className="mb-2 text-xl font-bold">Unisex & Inclusive</h3>
-              <p className="text-muted-foreground">
-                A welcoming space for everyone, regardless of gender or fitness level
+              <h3 className="mb-2 text-xl font-bold text-foreground">Unisex & Inclusive</h3>
+              <p className="text-foreground">
+                A welcoming environment for everyone, regardless of fitness level or background.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-accent/10">
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-accent/10">
                 <Clock className="h-8 w-8 text-green-accent" />
               </div>
-              <h3 className="mb-2 text-xl font-bold">Flexible Hours</h3>
-              <p className="text-muted-foreground">
-                Open 6 AM to 10 PM, 6 days a week to fit your busy schedule
+              <h3 className="mb-2 text-xl font-bold text-foreground">Flexible Hours</h3>
+              <p className="text-foreground">
+                Open early morning to late evening to fit your busy schedule.
               </p>
             </div>
           </div>
@@ -158,11 +161,11 @@ export default function HomePage() {
       {/* Testimonials */}
       <section className="py-16 md:py-24 bg-card/50">
         <div className="container mx-auto px-4">
-          <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight md:text-4xl">
-            What Our <span className="text-green-accent">Members Say</span>
+          <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight md:text-4xl text-foreground">
+            Success <span className="text-green-accent">Stories</span>
           </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-muted-foreground">
-            Real transformations from real people
+          <p className="mx-auto mb-12 max-w-2xl text-center text-foreground">
+            Real transformations from real members
           </p>
           <TestimonialsCarousel />
         </div>
@@ -176,20 +179,27 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-green-accent/10 to-green-accent/5">
+      <section className="py-16 md:py-24 bg-card/50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-black uppercase tracking-tight md:text-4xl">
-            Ready to Start Your <span className="text-green-accent">Fitness Journey?</span>
+          <h2 className="mb-4 text-3xl font-black uppercase tracking-tight md:text-5xl text-foreground">
+            Ready to <span className="text-green-accent">Transform</span>?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-muted-foreground">
-            Join Indian Fitness today and experience the difference. Book your free trial now!
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-foreground">
+            Join Indian Fitness today and start your journey to a healthier, stronger you.
           </p>
-          <Link to="/contact">
-            <Button size="lg" className="gap-2 text-lg font-bold px-12 py-7 bg-green-accent hover:bg-green-accent/90 text-black">
-              Book Free Trial
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-          </Link>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/contact">
+              <Button size="lg" className="gap-2 text-lg font-bold px-12 py-7 bg-green-accent hover:bg-green-accent/90 text-black">
+                Book Free Trial
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/membership">
+              <Button size="lg" variant="outline" className="gap-2 text-lg font-bold px-12 py-7 border-foreground text-foreground hover:bg-foreground hover:text-background">
+                View Plans
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </>

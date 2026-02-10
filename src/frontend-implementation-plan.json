@@ -1,85 +1,82 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace Mumbai location/contact copy with Kekri across frontend and centralize via MARKETING_CONFIG",
+  "title": "Global white text across the React app via Tailwind foreground tokens",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace all remaining Mumbai/old address/old phone references in UI copy and SEO metadata with Kekri, Rajasthan details.",
+      "summary": "Make `text-foreground` resolve to pure white in both light and dark modes via Tailwind CSS variable tokens.",
       "acceptanceCriteria": [
-        "No page in the UI displays the words “Mumbai” or the old Mumbai address (“123 Fitness Street, Mumbai, Maharashtra 400001, India”).",
-        "About page ‘Visit Us’ section displays: ‘Visit Us in Kekri’ and the Kekri address provided by the user (1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri, Kekri, Rajasthan).",
-        "Any phone number shown in the UI is consistent with the location update and does not show the old number +91 98765 43210 unless it is the configured number for Kekri.",
-        "SEO titles/descriptions on pages that currently reference Mumbai are updated to reference Kekri (preferably using MARKETING_CONFIG.location.displayName/fullLocation rather than hardcoded city strings)."
+        "All pages (Home, About, Programs, Café, Membership, Contact) render default body text in white without requiring per-component changes.",
+        "In both light and dark mode, `body` continues to use `@apply ... text-foreground`, and the resolved `foreground` color is white.",
+        "No regressions to layout/spacing occur as a result of the color token changes."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/AboutPage.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Remove all hardcoded Mumbai references (SEO title/description, mission copy, and the 'Visit Us' block). Update the 'Visit Us' section headline to 'Visit Us in Kekri' and ensure address/phone render from shared marketing configuration (no old Mumbai address or +91 98765 43210 remains)."
-        },
-        {
-          "path": "frontend/src/pages/MembershipPlansPage.tsx",
-          "operation": "modify",
-          "description": "Update SEO title/description to remove 'Mumbai' and reference Kekri via MARKETING_CONFIG.location.displayName/fullLocation (import MARKETING_CONFIG as needed)."
-        },
-        {
-          "path": "frontend/src/pages/ProgramsPage.tsx",
-          "operation": "modify",
-          "description": "Update SEO description to remove 'Mumbai' and reference Kekri via MARKETING_CONFIG.location.fullLocation (import MARKETING_CONFIG as needed)."
-        },
-        {
-          "path": "frontend/src/pages/CafePage.tsx",
-          "operation": "modify",
-          "description": "Update SEO description to remove 'Mumbai' and reference Kekri via MARKETING_CONFIG.location.fullLocation (import MARKETING_CONFIG as needed)."
+          "description": "Update the global theme CSS variables so `--foreground` is pure white in both `:root` (light) and `.dark` (dark), ensuring `text-foreground` renders white while `body` still uses `@apply bg-background text-foreground`."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Ensure all address/contact fields and map embed are consistently sourced from MARKETING_CONFIG across the frontend (Footer, Contact page, map, and Visit Us blocks).",
+      "summary": "Ensure all user-visible text stays white even where explicit non-white Tailwind text utilities and interactive states are currently used.",
       "acceptanceCriteria": [
-        "About page ‘Visit Us’ section uses MARKETING_CONFIG fields (address/city/state/country/phone/phoneFormatted) instead of hardcoded Mumbai strings.",
-        "Footer contact block continues to render from MARKETING_CONFIG and shows the Kekri address.",
-        "Contact page address card and phone link render the Kekri details from MARKETING_CONFIG.",
-        "Map iframe uses MARKETING_CONFIG.googleMapsEmbedUrl and the iframe title references Kekri via MARKETING_CONFIG.location.fullLocation."
+        "Navigation labels in the header remain white in normal, active, and hover states.",
+        "Footer link text and footer meta text remain white in normal and hover states, and icons/text that were previously yellow accent (e.g., `text-primary`) are updated to white.",
+        "Text in CTA areas (buttons, banners, forms) remains white unless the text is part of a non-text graphic (e.g., an image)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/AboutPage.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Refactor the About page 'Visit Us' section to render address/city/state/country and tel: link from MARKETING_CONFIG (and align the heading text with the config-driven Kekri location)."
+          "description": "Adjust supporting color tokens and custom utility mappings so common text variants remain white (e.g., set `--muted-foreground` to white and remap custom `.text-green-accent` / `.text-gold` utilities to use the foreground token), including preserving white selection text."
         },
         {
-          "path": "frontend/src/components/sections/MapEmbed.tsx",
+          "path": "frontend/src/components/layout/Header.tsx",
           "operation": "modify",
-          "description": "Confirm the Google Maps iframe src uses MARKETING_CONFIG.googleMapsEmbedUrl and the iframe title references MARKETING_CONFIG.location.fullLocation (update if any hardcoded values exist)."
-        },
-        {
-          "path": "frontend/src/pages/ContactBookTrialPage.tsx",
-          "operation": "modify",
-          "description": "Confirm all displayed contact details and links (address lines, tel:, mailto:) render from MARKETING_CONFIG and remain consistent with the updated Kekri configuration."
+          "description": "Update header navigation button classes so labels remain white in normal/active/hover states (e.g., replace `hover:text-primary` behavior with a white/foreground-consistent hover state while keeping existing layout/spacing)."
         },
         {
           "path": "frontend/src/components/layout/Footer.tsx",
           "operation": "modify",
-          "description": "Confirm the footer contact block renders fully from MARKETING_CONFIG (address lines and tel: link) and shows Kekri details consistently."
+          "description": "Update footer text/link/icon classes so all footer copy stays white in normal and hover states (replace uses of `text-muted-foreground`, `hover:text-primary`, and `text-primary` on inline icon/link text with white/foreground-consistent classes)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Update Home page explicit non-white text utilities so user-visible text (including highlighted words and CTA button labels currently using accent or black text) renders white, while keeping existing backgrounds/branding and layout intact."
+        },
+        {
+          "path": "frontend/src/components/sections/LeadForm.tsx",
+          "operation": "modify",
+          "description": "Update LeadForm success/CTA/help text classes so any explicit `text-muted-foreground`/accent text stays white (including informational and helper copy), without altering form layout/spacing."
+        },
+        {
+          "path": "frontend/src/components/conversion/StickyMobileCTA.tsx",
+          "operation": "modify",
+          "description": "Ensure StickyMobileCTA button and outline/hover text classes remain white in default and interactive states (hover/focus), without changing button backgrounds or spacing."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Update MARKETING_CONFIG to match the provided Kekri location details and ensure the configured phone number is the intended Kekri contact number.",
+      "summary": "Apply the white-foreground token update consistently across all active global stylesheet entrypoints used by the frontend build to avoid environment-dependent mismatches.",
       "acceptanceCriteria": [
-        "MARKETING_CONFIG.address/city/state/country reflect the Kekri address provided by the user.",
-        "All tel: links and displayed phone formatting across the site match the phone configured in MARKETING_CONFIG.",
-        "No remaining components/pages display a different address than MARKETING_CONFIG."
+        "The app renders white text consistently in local dev and production builds.",
+        "There is a single, consistent source of truth for the white foreground token across global CSS files used by the build."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/config/marketing.ts",
+          "path": "frontend/index.css",
           "operation": "modify",
-          "description": "Set/verify MARKETING_CONFIG fields for Kekri: address '1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri', city 'Kekri', state 'Rajasthan', country 'India'; and confirm phone/phoneFormatted/whatsappNumber reflect the intended Kekri contact number (ensuring no legacy Mumbai number is used anywhere)."
+          "description": "Align the legacy/global CSS variable tokens with the active app theme so `text-foreground` resolves to pure white in both light and dark modes, avoiding dev/prod mismatches if this stylesheet is still included in any build path."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Confirm the canonical token definitions (including pure-white `--foreground`) are present and consistent in the primary stylesheet imported by the app, and document/organize variables to serve as the single source of truth across global CSS entrypoints."
         }
       ]
     }

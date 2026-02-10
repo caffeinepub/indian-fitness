@@ -44,192 +44,209 @@ Message: ${formData.message || 'No additional message'}
     submitLead({
       name: formData.name,
       email: formData.email || 'no-email@provided.com',
-      company: formData.interest || 'General Inquiry',
+      company: formData.phone,
       message: detailedMessage,
     });
   };
 
-  const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      interest: '',
+      preferredTime: '',
+      message: '',
+    });
   };
 
   if (isSuccess) {
     return (
-      <Card className="border-green-accent/40 bg-gradient-to-br from-card to-green-accent/5">
-        <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-          <CheckCircle2 className="mb-4 h-16 w-16 text-green-accent" />
-          <h3 className="mb-2 text-2xl font-black uppercase">Thank You!</h3>
-          <p className="mb-6 text-muted-foreground">
-            We've received your trial booking request. Our team will contact you within 24 hours to confirm your session.
-          </p>
-          <a
-            href={`https://wa.me/${MARKETING_CONFIG.whatsappNumber}`}
-            target="_blank"
-            rel="noopener noreferrer"
+      <Card className="border-primary bg-gradient-to-br from-card to-primary/5">
+        <CardHeader className="text-center">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
+            <CheckCircle2 className="h-10 w-10 text-primary" />
+          </div>
+          <CardTitle className="text-2xl text-foreground">Thank You!</CardTitle>
+          <CardDescription className="text-base text-foreground">
+            We've received your inquiry and will contact you shortly.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="rounded-lg bg-card p-4 text-center">
+            <p className="mb-2 text-sm text-foreground">
+              Want to connect faster? Reach us on WhatsApp:
+            </p>
+            <a
+              href={`https://wa.me/${MARKETING_CONFIG.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">
+                <MessageCircle className="h-4 w-4" />
+                Chat on WhatsApp
+              </Button>
+            </a>
+          </div>
+          <Button
+            variant="outline"
+            onClick={handleReset}
+            className="w-full text-foreground border-foreground hover:bg-foreground hover:text-background"
           >
-            <Button variant="outline" className="gap-2 border-green-accent text-green-accent hover:bg-green-accent hover:text-background">
-              <MessageCircle className="h-5 w-5" />
-              Chat on WhatsApp
-            </Button>
-          </a>
+            Submit Another Inquiry
+          </Button>
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <Card className="border-border/40 bg-card">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-2xl font-black uppercase">Book Free Trial</CardTitle>
-        <CardDescription>Fill out the form and we'll get back to you shortly</CardDescription>
+        <CardTitle className="text-foreground">Book Your Free Trial</CardTitle>
+        <CardDescription className="text-foreground">
+          Fill out the form below and we'll get back to you within 24 hours.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="name">Full Name *</Label>
+          <div className="space-y-2">
+            <Label htmlFor="name" className="text-foreground">
+              Full Name <span className="text-destructive">*</span>
+            </Label>
             <Input
               id="name"
-              type="text"
               placeholder="Enter your full name"
               value={formData.name}
-              onChange={(e) => handleChange('name', e.target.value)}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
-              disabled={isSubmitDisabled}
+              disabled={isPending}
+              className="text-foreground"
             />
           </div>
 
-          <div>
-            <Label htmlFor="phone">Phone / WhatsApp Number *</Label>
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="text-foreground">
+              Phone / WhatsApp <span className="text-destructive">*</span>
+            </Label>
             <Input
               id="phone"
               type="tel"
-              placeholder="+91 98765 43210"
+              placeholder="+91 XXXXX XXXXX"
               value={formData.phone}
-              onChange={(e) => handleChange('phone', e.target.value)}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               required
-              disabled={isSubmitDisabled}
+              disabled={isPending}
+              className="text-foreground"
             />
           </div>
 
-          <div>
-            <Label htmlFor="email">Email (Optional)</Label>
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-foreground">Email (Optional)</Label>
             <Input
               id="email"
               type="email"
               placeholder="your.email@example.com"
               value={formData.email}
-              onChange={(e) => handleChange('email', e.target.value)}
-              disabled={isSubmitDisabled}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              disabled={isPending}
+              className="text-foreground"
             />
           </div>
 
-          <div>
-            <Label htmlFor="interest">I'm Interested In *</Label>
+          <div className="space-y-2">
+            <Label htmlFor="interest" className="text-foreground">
+              I'm Interested In <span className="text-destructive">*</span>
+            </Label>
             <Select
               value={formData.interest}
-              onValueChange={(value) => handleChange('interest', value)}
+              onValueChange={(value) => setFormData({ ...formData, interest: value })}
               required
-              disabled={isSubmitDisabled}
+              disabled={isPending}
             >
-              <SelectTrigger id="interest">
-                <SelectValue placeholder="Select your interest" />
+              <SelectTrigger id="interest" className="text-foreground">
+                <SelectValue placeholder="Select a program" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Gym">Gym / Strength Training</SelectItem>
-                <SelectItem value="Zumba">Zumba Classes</SelectItem>
-                <SelectItem value="Weight Loss">Weight Loss Program</SelectItem>
-                <SelectItem value="Personal Training">Personal Training</SelectItem>
-                <SelectItem value="Café">Café / Nutrition</SelectItem>
-                <SelectItem value="General">General Inquiry</SelectItem>
+                <SelectItem value="strength-training">Strength Training</SelectItem>
+                <SelectItem value="weight-loss">Weight Loss Program</SelectItem>
+                <SelectItem value="zumba">Zumba Classes</SelectItem>
+                <SelectItem value="personal-training">Personal Training</SelectItem>
+                <SelectItem value="membership">General Membership</SelectItem>
+                <SelectItem value="cafe">Café & Nutrition</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <div>
-            <Label htmlFor="preferredTime">Preferred Time *</Label>
+          <div className="space-y-2">
+            <Label htmlFor="preferredTime" className="text-foreground">Preferred Contact Time</Label>
             <Select
               value={formData.preferredTime}
-              onValueChange={(value) => handleChange('preferredTime', value)}
-              required
-              disabled={isSubmitDisabled}
+              onValueChange={(value) => setFormData({ ...formData, preferredTime: value })}
+              disabled={isPending}
             >
-              <SelectTrigger id="preferredTime">
-                <SelectValue placeholder="Select preferred time" />
+              <SelectTrigger id="preferredTime" className="text-foreground">
+                <SelectValue placeholder="Select a time" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Morning (5 AM - 9 AM)">Morning (5 AM - 9 AM)</SelectItem>
-                <SelectItem value="Mid-Morning (9 AM - 12 PM)">Mid-Morning (9 AM - 12 PM)</SelectItem>
-                <SelectItem value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</SelectItem>
-                <SelectItem value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</SelectItem>
-                <SelectItem value="Night (8 PM - 11 PM)">Night (8 PM - 11 PM)</SelectItem>
+                <SelectItem value="morning">Morning (6 AM - 12 PM)</SelectItem>
+                <SelectItem value="afternoon">Afternoon (12 PM - 5 PM)</SelectItem>
+                <SelectItem value="evening">Evening (5 PM - 9 PM)</SelectItem>
+                <SelectItem value="anytime">Anytime</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <div>
-            <Label htmlFor="message">Your Fitness Goals (Optional)</Label>
+          <div className="space-y-2">
+            <Label htmlFor="message" className="text-foreground">Additional Message (Optional)</Label>
             <Textarea
               id="message"
-              placeholder="Tell us about your fitness goals and any questions you have..."
+              placeholder="Tell us about your fitness goals or any questions you have..."
               value={formData.message}
-              onChange={(e) => handleChange('message', e.target.value)}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               rows={4}
-              disabled={isSubmitDisabled}
+              disabled={isPending}
+              className="text-foreground"
             />
           </div>
 
-          {!isActorReady && !actorLoading && (
-            <div className="rounded-md bg-yellow-500/10 border border-yellow-500/20 p-3 text-sm text-yellow-600 dark:text-yellow-400 flex items-start gap-2">
-              <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-              <span>The system is still loading. Please wait a moment before submitting.</span>
-            </div>
-          )}
-
-          {actorLoading && (
-            <div className="rounded-md bg-blue-500/10 border border-blue-500/20 p-3 text-sm text-blue-600 dark:text-blue-400 flex items-start gap-2">
-              <Loader2 className="h-5 w-5 flex-shrink-0 mt-0.5 animate-spin" />
-              <span>Loading system, please wait...</span>
-            </div>
-          )}
-
           {isError && (
-            <div className="rounded-md bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive flex items-start gap-2">
-              <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
-              <span>
-                {error?.message || 'Something went wrong. Please try again or contact us directly.'}
-              </span>
+            <div className="flex items-start gap-2 rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive">
+              <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+              <div>
+                <p className="font-semibold">Submission Failed</p>
+                <p className="text-xs">
+                  {error?.message || 'Unable to submit your inquiry. Please try again or contact us directly.'}
+                </p>
+              </div>
             </div>
           )}
 
-          <Button type="submit" className="w-full gap-2 font-bold" size="lg" disabled={isSubmitDisabled}>
+          {!isActorReady && (
+            <div className="flex items-start gap-2 rounded-lg border border-muted bg-muted/20 p-3 text-sm text-foreground">
+              <Loader2 className="mt-0.5 h-4 w-4 flex-shrink-0 animate-spin" />
+              <p>Connecting to server...</p>
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+            disabled={isSubmitDisabled}
+          >
             {isPending ? (
               <>
-                <Loader2 className="h-5 w-5 animate-spin" />
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Submitting...
               </>
-            ) : actorLoading ? (
-              <>
-                <Loader2 className="h-5 w-5 animate-spin" />
-                Loading...
-              </>
             ) : (
-              'Book My Free Trial'
+              'Submit Inquiry'
             )}
           </Button>
 
-          <div className="text-center">
-            <p className="mb-2 text-sm text-muted-foreground">Or reach us directly:</p>
-            <a
-              href={`https://wa.me/${MARKETING_CONFIG.whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outline" className="gap-2 border-green-accent text-green-accent hover:bg-green-accent hover:text-background" type="button">
-                <MessageCircle className="h-5 w-5" />
-                WhatsApp Us
-              </Button>
-            </a>
-          </div>
+          <p className="text-center text-xs text-foreground">
+            By submitting this form, you agree to be contacted by our team.
+          </p>
         </form>
       </CardContent>
     </Card>

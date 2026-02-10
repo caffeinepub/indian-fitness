@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T10:16:54.239Z",
+  "generatedAt": "2026-02-10T10:27:05.158Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,47 +12,35 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Set the global default text color to pure white across the entire React app by updating the Tailwind color tokens so that `text-foreground` renders white in both light and dark modes.",
+        "summary": "Add the uploaded new logo (use the transparent PNG upload) as a static asset under `frontend/public/assets/generated/` and standardize it to a square 512×512 PNG for consistent rendering.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css"
+          "frontend/public/assets/generated/logo-indian-fitness-unisex-gym.dim_512x512.png"
         ],
         "matchedFiles": [
-          "frontend/src/index.css"
+          "frontend/public/assets/generated/logo-indian-fitness-unisex-gym.dim_512x512.png"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Ensure all user-visible text remains white even where components currently apply explicit non-white text utility classes (e.g., `text-muted-foreground`, `text-primary`, `hover:text-primary`, `text-green-accent`, `text-gold`), including interactive states such as hover and focus.",
+        "summary": "Update `frontend/src/config/branding.ts` to point `BRANDING.logo.path` to the new logo asset so the header and footer display the new logo everywhere the branding config is used.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/layout/Header.tsx",
-          "frontend/src/components/layout/Footer.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/sections/LeadForm.tsx",
-          "frontend/src/components/conversion/StickyMobileCTA.tsx"
+          "frontend/src/config/branding.ts"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/layout/Header.tsx",
-          "frontend/src/components/layout/Footer.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/sections/LeadForm.tsx",
-          "frontend/src/components/conversion/StickyMobileCTA.tsx"
+          "frontend/src/config/branding.ts"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Apply the same white-foreground token update consistently in all active global stylesheet entrypoints used by the frontend build (including both `frontend/src/index.css` and `frontend/index.css` if the project still ships both), so there is no environment-dependent mismatch in text color.",
+        "summary": "Update `frontend/index.html` favicon `<link rel='icon'>` to use the new logo asset so the browser tab icon matches the new logo.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/index.css",
-          "frontend/src/index.css"
+          "frontend/index.html"
         ],
         "matchedFiles": [
-          "frontend/index.css",
-          "frontend/src/index.css"
+          "frontend/index.html"
         ]
       }
     ]
@@ -62,13 +50,9 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.css",
-    "frontend/src/components/conversion/StickyMobileCTA.tsx",
-    "frontend/src/components/layout/Footer.tsx",
-    "frontend/src/components/layout/Header.tsx",
-    "frontend/src/components/sections/LeadForm.tsx",
-    "frontend/src/index.css",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/index.html",
+    "frontend/public/assets/generated/logo-indian-fitness-unisex-gym.dim_512x512.png",
+    "frontend/src/config/branding.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

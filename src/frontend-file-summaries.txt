@@ -22,8 +22,8 @@
   "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching data from the backend; includes useGetAllLeads for admin lead management.",
   "frontend/src/index.css": "Global styles with OKLCH-based dark theme color system featuring pure white text (lightness 1.0) for all foreground tokens in both light and dark modes, bright yellow accents for primary actions, and accessible focus states.",
   "frontend/tailwind.config.js": "Tailwind configuration extending the theme with bright green color utilities mapped to primary tokens, Inter font family, and consistent design tokens matching the dark + bright green aesthetic.",
-  "frontend/src/config/branding.ts": "Centralized branding configuration file that exports constants for the new Indian Fitness logo asset path and company name to ensure consistency across all components.",
-  "frontend/index.html": "HTML entry point with favicon link pointing to the new Indian Fitness logo asset for browser tab display.",
+  "frontend/src/config/branding.ts": "Centralized branding configuration file that exports constants for the new Indian Fitness Unisex Gym logo asset path and company name to ensure consistency across all components.",
+  "frontend/index.html": "HTML entry point with favicon link pointing to the new Indian Fitness Unisex Gym logo asset for browser tab display.",
   "frontend/src/config/coaches.ts": "Centralized coaches configuration exporting a typed array of coach profiles (name, specialty, optional experience) for the three expert coaches: Lavesh Kodwani, Hemraj Dhakar, and Ishika Sahu.",
   "frontend/index.css": "Legacy global stylesheet with OKLCH color tokens updated to pure white foreground (lightness 1.0) in both light and dark modes for consistency across all build environments."
 }

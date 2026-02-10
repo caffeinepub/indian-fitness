@@ -1,76 +1,88 @@
 {
   "kind": "build_request",
-  "title": "Change all text across the app to white (global font color)",
+  "title": "Replace app logo with uploaded Indian Fitness logo",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Set the global default text color to pure white across the entire React app by updating the Tailwind color tokens so that `text-foreground` renders white in both light and dark modes.",
+      "text": "Add the uploaded new logo (use the transparent PNG upload) as a static asset under `frontend/public/assets/generated/` and standardize it to a square 512×512 PNG for consistent rendering.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-7",
-          "recent-8"
+          "msg-1"
         ],
         "quotes": [
-          "change to colour of all font to white",
-          "apply"
+          "new logo appear"
         ]
       },
       "acceptanceCriteria": [
-        "All pages (Home, About, Programs, Café, Membership, Contact) render default body text in white without requiring per-component changes.",
-        "In both light and dark mode, `body` continues to use `@apply ... text-foreground`, and the resolved `foreground` color is white.",
-        "No regressions to layout/spacing occur as a result of the color token changes."
+        "A new 512×512 PNG logo file exists in `frontend/public/assets/generated/`.",
+        "The added logo has a transparent background (not a black/gray rectangle).",
+        "The logo renders crisp at small sizes (40–48px) without obvious cropping."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Ensure all user-visible text remains white even where components currently apply explicit non-white text utility classes (e.g., `text-muted-foreground`, `text-primary`, `hover:text-primary`, `text-green-accent`, `text-gold`), including interactive states such as hover and focus.",
+      "text": "Update `frontend/src/config/branding.ts` to point `BRANDING.logo.path` to the new logo asset so the header and footer display the new logo everywhere the branding config is used.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-7"
+          "msg-1"
         ],
         "quotes": [
-          "change to colour of all font to white"
+          "logo change",
+          "new logo appear"
         ]
       },
       "acceptanceCriteria": [
-        "Navigation labels in the header remain white in normal, active, and hover states.",
-        "Footer link text and footer meta text remain white in normal and hover states, and icons/text that were previously yellow accent (e.g., `text-primary`) are updated to white.",
-        "Text in CTA areas (buttons, banners, forms) remains white unless the text is part of a non-text graphic (e.g., an image)."
+        "`BRANDING.logo.path` is updated to the new asset path.",
+        "The header logo (in `frontend/src/components/layout/Header.tsx`) displays the new logo on desktop and mobile.",
+        "The footer logo (in `frontend/src/components/layout/Footer.tsx`) displays the new logo."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Apply the same white-foreground token update consistently in all active global stylesheet entrypoints used by the frontend build (including both `frontend/src/index.css` and `frontend/index.css` if the project still ships both), so there is no environment-dependent mismatch in text color.",
+      "text": "Update `frontend/index.html` favicon `<link rel='icon'>` to use the new logo asset so the browser tab icon matches the new logo.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-8"
+          "msg-1"
         ],
         "quotes": [
-          "apply"
+          "new logo appear"
         ]
       },
       "acceptanceCriteria": [
-        "The app renders white text consistently in local dev and production builds.",
-        "There is a single, consistent source of truth for the white foreground token across global CSS files used by the build."
+        "`frontend/index.html` references the new logo asset for the favicon.",
+        "After reload, the browser tab/favicon shows the new logo (may require hard refresh depending on caching)."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under `frontend/src/components/ui` (compose them instead of editing).",
-    "Do not edit immutable auth/actor bootstrap hooks: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, and `frontend/src/main.tsx`.",
-    "Backend remains single-actor Motoko; no backend changes are required for this request."
+    "Do not modify any files under `frontend/src/components/ui` (read-only UI components).",
+    "Do not change Internet Identity/auth hooks in `frontend/src/hooks/useInternetIdentity.ts` / `.tsx` or `frontend/src/hooks/useActor.ts` (immutable paths)."
   ],
   "nonGoals": [
-    "Changing background colors, button background colors, or the overall yellow branding theme (beyond making text white).",
-    "Adding new pages, routes, or features unrelated to text color.",
-    "Any backend schema/state changes or migrations."
+    "Changing the site color theme or typography.",
+    "Adding new logo placements beyond existing header/footer/favicon.",
+    "Backend changes or data migrations."
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Square logo image based on the uploaded transparent PNG (logo-indian-fitness-unisex-gym.dim_512x512.png)"
+    ],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use English for any user-facing text."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

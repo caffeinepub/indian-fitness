@@ -1,82 +1,52 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Global white text across the React app via Tailwind foreground tokens",
+  "title": "Swap branding logo + favicon to new Indian Fitness logo asset",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Make `text-foreground` resolve to pure white in both light and dark modes via Tailwind CSS variable tokens.",
+      "summary": "Add the uploaded transparent logo as a standardized 512×512 square PNG static asset under frontend/public/assets/generated/.",
       "acceptanceCriteria": [
-        "All pages (Home, About, Programs, Café, Membership, Contact) render default body text in white without requiring per-component changes.",
-        "In both light and dark mode, `body` continues to use `@apply ... text-foreground`, and the resolved `foreground` color is white.",
-        "No regressions to layout/spacing occur as a result of the color token changes."
+        "A new 512×512 PNG logo file exists in `frontend/public/assets/generated/`.",
+        "The added logo has a transparent background (not a black/gray rectangle).",
+        "The logo renders crisp at small sizes (40–48px) without obvious cropping."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Update the global theme CSS variables so `--foreground` is pure white in both `:root` (light) and `.dark` (dark), ensuring `text-foreground` renders white while `body` still uses `@apply bg-background text-foreground`."
+          "path": "frontend/public/assets/generated/logo-indian-fitness-unisex-gym.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the provided transparent PNG logo as a square 512×512 PNG at this exact path/filename for consistent rendering across the app."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Ensure all user-visible text stays white even where explicit non-white Tailwind text utilities and interactive states are currently used.",
+      "summary": "Point BRANDING.logo.path to the new logo asset so all branding-driven logo placements (header/footer) update globally.",
       "acceptanceCriteria": [
-        "Navigation labels in the header remain white in normal, active, and hover states.",
-        "Footer link text and footer meta text remain white in normal and hover states, and icons/text that were previously yellow accent (e.g., `text-primary`) are updated to white.",
-        "Text in CTA areas (buttons, banners, forms) remains white unless the text is part of a non-text graphic (e.g., an image)."
+        "`BRANDING.logo.path` is updated to the new asset path.",
+        "The header logo (in `frontend/src/components/layout/Header.tsx`) displays the new logo on desktop and mobile.",
+        "The footer logo (in `frontend/src/components/layout/Footer.tsx`) displays the new logo."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/config/branding.ts",
           "operation": "modify",
-          "description": "Adjust supporting color tokens and custom utility mappings so common text variants remain white (e.g., set `--muted-foreground` to white and remap custom `.text-green-accent` / `.text-gold` utilities to use the foreground token), including preserving white selection text."
-        },
-        {
-          "path": "frontend/src/components/layout/Header.tsx",
-          "operation": "modify",
-          "description": "Update header navigation button classes so labels remain white in normal/active/hover states (e.g., replace `hover:text-primary` behavior with a white/foreground-consistent hover state while keeping existing layout/spacing)."
-        },
-        {
-          "path": "frontend/src/components/layout/Footer.tsx",
-          "operation": "modify",
-          "description": "Update footer text/link/icon classes so all footer copy stays white in normal and hover states (replace uses of `text-muted-foreground`, `hover:text-primary`, and `text-primary` on inline icon/link text with white/foreground-consistent classes)."
-        },
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Update Home page explicit non-white text utilities so user-visible text (including highlighted words and CTA button labels currently using accent or black text) renders white, while keeping existing backgrounds/branding and layout intact."
-        },
-        {
-          "path": "frontend/src/components/sections/LeadForm.tsx",
-          "operation": "modify",
-          "description": "Update LeadForm success/CTA/help text classes so any explicit `text-muted-foreground`/accent text stays white (including informational and helper copy), without altering form layout/spacing."
-        },
-        {
-          "path": "frontend/src/components/conversion/StickyMobileCTA.tsx",
-          "operation": "modify",
-          "description": "Ensure StickyMobileCTA button and outline/hover text classes remain white in default and interactive states (hover/focus), without changing button backgrounds or spacing."
+          "description": "Update `BRANDING.logo.path` to `/assets/generated/logo-indian-fitness-unisex-gym.dim_512x512.png` so existing header/footer logo renders use the new asset everywhere branding config is consumed."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Apply the white-foreground token update consistently across all active global stylesheet entrypoints used by the frontend build to avoid environment-dependent mismatches.",
+      "summary": "Update the HTML favicon link to reference the new logo asset so the browser tab icon matches the updated branding.",
       "acceptanceCriteria": [
-        "The app renders white text consistently in local dev and production builds.",
-        "There is a single, consistent source of truth for the white foreground token across global CSS files used by the build."
+        "`frontend/index.html` references the new logo asset for the favicon.",
+        "After reload, the browser tab/favicon shows the new logo (may require hard refresh depending on caching)."
       ],
       "file_operations": [
         {
-          "path": "frontend/index.css",
+          "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Align the legacy/global CSS variable tokens with the active app theme so `text-foreground` resolves to pure white in both light and dark modes, avoiding dev/prod mismatches if this stylesheet is still included in any build path."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Confirm the canonical token definitions (including pure-white `--foreground`) are present and consistent in the primary stylesheet imported by the app, and document/organize variables to serve as the single source of truth across global CSS entrypoints."
+          "description": "Change the favicon `<link rel='icon'>` to reference `/assets/generated/logo-indian-fitness-unisex-gym.dim_512x512.png`."
         }
       ]
     }

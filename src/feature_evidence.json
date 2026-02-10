@@ -2,11 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-set-the-global-default-text-color-to-pure-white-across-the-entire-react-app-by-updating-the-tailwind-color-tokens-so-that-text-foreground-renders-white-in-both-light-and-dark-modes",
-      "featureTitle": "Set the global default text color to pure white across the entire React app by updating the Tailwind color tokens so that `text-foreground` renders white in both light and dark modes.",
-      "files": [
-        "frontend/src/index.css"
-      ],
+      "featureId": "feature-add-the-uploaded-new-logo-use-the-transparent-png-upload-as-a-static-asset-under-frontend-public-assets-generated-and-standardize-it-to-a-square-512-512-png-for-consistent-rendering",
+      "featureTitle": "Add the uploaded new logo (use the transparent PNG upload) as a static asset under `frontend/public/assets/generated/` and standardize it to a square 512×512 PNG for consistent rendering.",
+      "files": [],
       "components": [
         "authorization@4.0.0",
         "core-infrastructure@1.0.2",
@@ -21,15 +19,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-ensure-all-user-visible-text-remains-white-even-where-components-currently-apply-explicit-non-white-text-utility-classes-e-g-text-muted-foreground-text-primary-hover-text-primary-text-green-accent-text-gold-including-interactive-states-such-as-hover-and-focus",
-      "featureTitle": "Ensure all user-visible text remains white even where components currently apply explicit non-white text utility classes (e.g., `text-muted-foreground`, `text-primary`, `hover:text-primary`, `text-green-accent`, `text-gold`), including interactive states such as hover and focus.",
+      "featureId": "feature-update-frontend-src-config-branding-ts-to-point-branding-logo-path-to-the-new-logo-asset-so-the-header-and-footer-display-the-new-logo-everywhere-the-branding-config-is-used",
+      "featureTitle": "Update `frontend/src/config/branding.ts` to point `BRANDING.logo.path` to the new logo asset so the header and footer display the new logo everywhere the branding config is used.",
       "files": [
-        "frontend/src/components/conversion/StickyMobileCTA.tsx",
-        "frontend/src/components/layout/Footer.tsx",
-        "frontend/src/components/layout/Header.tsx",
-        "frontend/src/components/sections/LeadForm.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/config/branding.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -45,11 +38,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-apply-the-same-white-foreground-token-update-consistently-in-all-active-global-stylesheet-entrypoints-used-by-the-frontend-build-including-both-frontend-src-index-css-and-frontend-index-css-if-the-project-still-ships-both-so-there-is-no-environment-dependent-mismatch-in-text-color",
-      "featureTitle": "Apply the same white-foreground token update consistently in all active global stylesheet entrypoints used by the frontend build (including both `frontend/src/index.css` and `frontend/index.css` if the project still ships both), so there is no environment-dependent mismatch in text color.",
+      "featureId": "feature-update-frontend-index-html-favicon-link-rel-icon-to-use-the-new-logo-asset-so-the-browser-tab-icon-matches-the-new-logo",
+      "featureTitle": "Update `frontend/index.html` favicon `<link rel='icon'>` to use the new logo asset so the browser tab icon matches the new logo.",
       "files": [
-        "frontend/index.css",
-        "frontend/src/index.css"
+        "frontend/index.html"
       ],
       "components": [
         "authorization@4.0.0",

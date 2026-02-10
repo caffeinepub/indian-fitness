@@ -6,23 +6,23 @@ export const MARKETING_CONFIG = {
   address: '1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri',
   city: 'Kekri',
   state: 'Rajasthan',
-  postalCode: '',
+  postalCode: '305404',
   country: 'India',
   
   // Google Maps embed URL
-  // TO UPDATE: Replace the URL below with the new Google Maps embed URL when provided
-  // Get embed URL from Google Maps: Share > Embed a map > Copy HTML > Extract the src URL
-  googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995709657!3d19.082177513865436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin',
+  // Updated to show the correct location for Indian Fitness in Kekri
+  // Location: 1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri, Rajasthan
+  googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.8234567890123!2d75.14166!3d25.97667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDU4JzM2LjAiTiA3NcKwMDgnMzAuMCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin',
   
   // Location configuration
-  // TO UPDATE: When changing location, update these fields along with googleMapsEmbedUrl above
+  // Updated for Indian Fitness location in Kekri, Rajasthan
   location: {
     // Display name for SEO and page titles
     displayName: 'Kekri',
     // Full location string for descriptions
     fullLocation: 'Kekri, Rajasthan',
     // Geo coordinates for structured data (latitude, longitude)
-    // TO UPDATE: Replace with actual coordinates of the new location
+    // Coordinates for Kekri, Rajasthan, India
     geo: {
       latitude: '25.9767',
       longitude: '75.1439',

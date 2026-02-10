@@ -57,6 +57,7 @@ export default {
                     5: 'oklch(var(--chart-5))'
                 },
                 gold: 'oklch(var(--primary))',
+                'green-accent': 'oklch(var(--primary))',
             },
             borderRadius: {
                 lg: 'var(--radius)',

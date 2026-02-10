@@ -4,17 +4,17 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export default function PlanComparisonTable() {
   const features = [
-    { name: 'Full Gym Access', monthly: true, quarterly: true, annual: true },
-    { name: 'All Group Classes', monthly: true, quarterly: true, annual: true },
-    { name: 'Locker Facility', monthly: true, quarterly: true, annual: true },
-    { name: 'Basic Fitness Assessment', monthly: true, quarterly: true, annual: true },
-    { name: 'Personal Training Sessions', monthly: false, quarterly: '2 sessions', annual: '8 sessions' },
-    { name: 'Nutrition Consultation', monthly: false, quarterly: true, annual: 'Monthly' },
-    { name: 'Body Composition Analysis', monthly: false, quarterly: true, annual: 'Quarterly' },
-    { name: 'Café Discount', monthly: '10%', quarterly: '15%', annual: '20%' },
-    { name: 'Priority Class Booking', monthly: false, quarterly: true, annual: true },
-    { name: 'Guest Passes', monthly: false, quarterly: false, annual: '2/month' },
-    { name: 'Exclusive Member Events', monthly: false, quarterly: false, annual: true },
+    { name: 'Full Gym Access', monthly: true, quarterly: true, halfYearly: true, annually: true },
+    { name: 'All Group Classes', monthly: true, quarterly: true, halfYearly: true, annually: true },
+    { name: 'Locker Facility', monthly: true, quarterly: true, halfYearly: true, annually: true },
+    { name: 'Basic Fitness Assessment', monthly: true, quarterly: true, halfYearly: true, annually: true },
+    { name: 'Personal Training Sessions', monthly: false, quarterly: '2 sessions', halfYearly: '2 sessions', annually: '8 sessions' },
+    { name: 'Nutrition Consultation', monthly: false, quarterly: true, halfYearly: true, annually: 'Monthly' },
+    { name: 'Body Composition Analysis', monthly: false, quarterly: true, halfYearly: true, annually: 'Quarterly' },
+    { name: 'Café Discount', monthly: '10%', quarterly: '15%', halfYearly: '15%', annually: '20%' },
+    { name: 'Priority Class Booking', monthly: false, quarterly: true, halfYearly: true, annually: true },
+    { name: 'Guest Passes', monthly: false, quarterly: false, halfYearly: false, annually: '2/month' },
+    { name: 'Exclusive Member Events', monthly: false, quarterly: false, halfYearly: false, annually: true },
   ];
 
   const renderCell = (value: boolean | string) => {
@@ -36,10 +36,11 @@ export default function PlanComparisonTable() {
           <Table>
             <TableHeader>
               <TableRow className="border-border/40">
-                <TableHead className="w-1/2 font-bold">Feature</TableHead>
+                <TableHead className="w-1/3 font-bold">Feature</TableHead>
                 <TableHead className="text-center font-bold">Monthly</TableHead>
                 <TableHead className="text-center font-bold text-gold">Quarterly</TableHead>
-                <TableHead className="text-center font-bold">Annual</TableHead>
+                <TableHead className="text-center font-bold">Half-yearly</TableHead>
+                <TableHead className="text-center font-bold">Annually</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -48,7 +49,8 @@ export default function PlanComparisonTable() {
                   <TableCell className="font-medium">{feature.name}</TableCell>
                   <TableCell className="text-center">{renderCell(feature.monthly)}</TableCell>
                   <TableCell className="bg-gold/5 text-center">{renderCell(feature.quarterly)}</TableCell>
-                  <TableCell className="text-center">{renderCell(feature.annual)}</TableCell>
+                  <TableCell className="text-center">{renderCell(feature.halfYearly)}</TableCell>
+                  <TableCell className="text-center">{renderCell(feature.annually)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -57,11 +59,11 @@ export default function PlanComparisonTable() {
 
         {/* Mobile Stacked View */}
         <div className="md:hidden space-y-6 p-4">
-          {['monthly', 'quarterly', 'annual'].map((plan) => (
+          {['monthly', 'quarterly', 'halfYearly', 'annually'].map((plan) => (
             <div key={plan} className={`rounded-lg border p-4 ${plan === 'quarterly' ? 'border-gold bg-gold/5' : 'border-border/40'}`}>
               <h3 className="mb-4 text-center text-xl font-black uppercase">
                 {plan === 'quarterly' && <span className="text-gold">★ </span>}
-                {plan.charAt(0).toUpperCase() + plan.slice(1)}
+                {plan === 'halfYearly' ? 'Half-yearly' : plan.charAt(0).toUpperCase() + plan.slice(1)}
                 {plan === 'quarterly' && <span className="text-gold"> ★</span>}
               </h3>
               <div className="space-y-2">

@@ -4,13 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Check, ArrowRight, Zap } from 'lucide-react';
 import PlanComparisonTable from '@/components/sections/PlanComparisonTable';
 import Seo from '@/components/seo/Seo';
+import { MARKETING_CONFIG } from '@/config/marketing';
 
 export default function MembershipPlansPage() {
   return (
     <>
       <Seo
-        title="Membership Plans & Pricing - Join Indian Fitness Gym | Mumbai"
-        description="Flexible membership plans for every budget. Choose from monthly, quarterly, or annual gym memberships. Special offers available. Join Indian Fitness today!"
+        title={`Membership Plans & Pricing - Join Indian Fitness Gym | ${MARKETING_CONFIG.location.displayName}`}
+        description={`Flexible membership plans for every budget. Choose from monthly, quarterly, half-yearly, or annually gym memberships in ${MARKETING_CONFIG.location.fullLocation}. Special offers available. Join Indian Fitness today!`}
       />
 
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -25,14 +26,14 @@ export default function MembershipPlansPage() {
         </div>
 
         {/* Pricing Tiers */}
-        <div className="mb-16 grid gap-8 md:grid-cols-3">
+        <div className="mb-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Monthly Plan */}
           <Card className="border-border/40 bg-card hover:border-gold transition-all duration-300">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-black uppercase">Monthly</CardTitle>
               <CardDescription>Perfect for trying us out</CardDescription>
               <div className="mt-4">
-                <span className="text-4xl font-black text-gold">₹2,999</span>
+                <span className="text-4xl font-black text-gold">₹1,999</span>
                 <span className="text-muted-foreground">/month</span>
               </div>
             </CardHeader>
@@ -69,7 +70,7 @@ export default function MembershipPlansPage() {
           </Card>
 
           {/* Quarterly Plan - Popular */}
-          <Card className="relative border-gold bg-gradient-to-br from-card to-gold/5 shadow-lg shadow-gold/20 scale-105">
+          <Card className="relative border-gold bg-gradient-to-br from-card to-gold/5 shadow-lg shadow-gold/20 md:scale-105">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
               <div className="flex items-center gap-1 rounded-full bg-gold px-4 py-1 text-xs font-bold uppercase text-background">
                 <Zap className="h-3 w-3" />
@@ -80,7 +81,7 @@ export default function MembershipPlansPage() {
               <CardTitle className="text-2xl font-black uppercase">Quarterly</CardTitle>
               <CardDescription>Best value for committed members</CardDescription>
               <div className="mt-4">
-                <span className="text-4xl font-black text-gold">₹7,999</span>
+                <span className="text-4xl font-black text-gold">₹4,999</span>
                 <span className="text-muted-foreground">/3 months</span>
               </div>
               <p className="text-xs text-gold">Save ₹1,000!</p>
@@ -121,16 +122,63 @@ export default function MembershipPlansPage() {
             </CardContent>
           </Card>
 
-          {/* Annual Plan */}
+          {/* Half-yearly Plan */}
           <Card className="border-border/40 bg-card hover:border-gold transition-all duration-300">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-black uppercase">Annual</CardTitle>
+              <CardTitle className="text-2xl font-black uppercase">Half-yearly</CardTitle>
+              <CardDescription>Great for long-term commitment</CardDescription>
+              <div className="mt-4">
+                <span className="text-4xl font-black text-gold">₹8,999</span>
+                <span className="text-muted-foreground">/6 months</span>
+              </div>
+              <p className="text-xs text-gold">Save ₹3,000!</p>
+            </CardHeader>
+            <CardContent>
+              <ul className="mb-6 space-y-3">
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="text-sm">Everything in Quarterly</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="text-sm">2 personal training sessions</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="text-sm">Nutrition consultation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="text-sm">Body composition analysis</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="text-sm">15% café discount</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="text-sm">Priority class booking</span>
+                </li>
+              </ul>
+              <Link to="/contact">
+                <Button className="w-full gap-2 font-bold">
+                  Join Now
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Annually Plan */}
+          <Card className="border-border/40 bg-card hover:border-gold transition-all duration-300">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-black uppercase">Annually</CardTitle>
               <CardDescription>Maximum savings & benefits</CardDescription>
               <div className="mt-4">
-                <span className="text-4xl font-black text-gold">₹24,999</span>
+                <span className="text-4xl font-black text-gold">₹14,999</span>
                 <span className="text-muted-foreground">/year</span>
               </div>
-              <p className="text-xs text-gold">Save ₹11,000!</p>
+              <p className="text-xs text-gold">Save ₹9,000!</p>
             </CardHeader>
             <CardContent>
               <ul className="mb-6 space-y-3">

@@ -3,13 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dumbbell, TrendingDown, Music, User, ArrowRight } from 'lucide-react';
 import Seo from '@/components/seo/Seo';
+import { MARKETING_CONFIG } from '@/config/marketing';
 
 export default function ProgramsPage() {
   return (
     <>
       <Seo
         title="Fitness Programs - Strength Training, Weight Loss, Zumba | Indian Fitness"
-        description="Explore our comprehensive fitness programs: strength training, weight loss, Zumba classes, and personal training. Expert-led programs for all fitness levels in Mumbai."
+        description={`Explore our comprehensive fitness programs: strength training, weight loss, Zumba classes, and personal training. Expert-led programs for all fitness levels in ${MARKETING_CONFIG.location.fullLocation}.`}
       />
 
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -97,7 +98,7 @@ export default function ProgramsPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>Accountability and motivation from our expert team</span>
+                  <span>Accountability and support from trainers and community</span>
                 </li>
               </ul>
               <Link to="/contact">
@@ -109,20 +110,20 @@ export default function ProgramsPage() {
             </CardContent>
           </Card>
 
-          {/* Zumba & Group Classes */}
+          {/* Zumba */}
           <Card className="border-border/40 bg-card hover:border-gold transition-all duration-300">
             <CardHeader>
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gold/10">
                 <Music className="h-8 w-8 text-gold" />
               </div>
-              <CardTitle className="text-2xl font-black uppercase">Zumba & Group Classes</CardTitle>
+              <CardTitle className="text-2xl font-black uppercase">Zumba Classes</CardTitle>
               <CardDescription className="text-base">
-                Dance, sweat, and have fun while getting fit
+                Dance your way to fitness with high-energy group classes
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-muted-foreground">
-                Join our high-energy Zumba and group fitness classes where working out feels like a party! Burn calories, improve coordination, and make friends while dancing to infectious rhythms from around the world.
+                Our Zumba classes combine Latin and international music with dance moves to create a dynamic, exciting, and effective fitness program. Burn calories while having fun!
               </p>
               <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -135,11 +136,11 @@ export default function ProgramsPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>Suitable for all fitness levels - no dance experience needed</span>
+                  <span>All fitness levels welcome - no dance experience needed</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>Supportive group atmosphere and community vibes</span>
+                  <span>Full-body cardio workout that doesn't feel like exercise</span>
                 </li>
               </ul>
               <Link to="/contact">
@@ -164,24 +165,24 @@ export default function ProgramsPage() {
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-muted-foreground">
-                Get undivided attention from our certified personal trainers who will design a completely customized program for your specific goals, fitness level, and lifestyle. Accelerate your results with expert guidance.
+                Get personalized attention and customized programming with our expert personal trainers. Perfect for those who want accelerated results, specific goals, or prefer individualized coaching.
               </p>
               <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>Fully personalized workout and nutrition plans</span>
+                  <span>Fully customized workout and nutrition plans</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>One-on-one sessions with certified trainers</span>
+                  <span>Dedicated trainer focused solely on your progress</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>Flexible scheduling to fit your busy lifestyle</span>
+                  <span>Flexible scheduling to fit your lifestyle</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">•</span>
-                  <span>Faster results with accountability and expert motivation</span>
+                  <span>Accountability, motivation, and expert guidance</span>
                 </li>
               </ul>
               <Link to="/contact">
@@ -195,16 +196,16 @@ export default function ProgramsPage() {
         </div>
 
         {/* CTA Section */}
-        <section className="mt-16 rounded-lg bg-gradient-to-br from-card to-gold/5 p-8 text-center md:p-12">
+        <section className="mt-16 text-center">
           <h2 className="mb-4 text-3xl font-black uppercase">
-            Not Sure Which Program is <span className="text-gold">Right for You?</span>
+            Ready to <span className="text-gold">Get Started</span>?
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-muted-foreground">
-            Book a free consultation with our fitness experts. We'll assess your goals, fitness level, and preferences to recommend the perfect program for you.
+            Book a free trial to experience our programs firsthand and find the perfect fit for your fitness goals.
           </p>
           <Link to="/contact">
             <Button size="lg" className="gap-2 text-lg font-bold px-8 py-6">
-              Book Free Consultation
+              Book Free Trial
               <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>

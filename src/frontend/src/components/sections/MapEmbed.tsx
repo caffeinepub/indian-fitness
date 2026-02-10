@@ -14,7 +14,7 @@ export default function MapEmbed() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Indian Fitness Location"
+            title={`Indian Fitness - ${MARKETING_CONFIG.location.fullLocation}`}
           />
         </div>
       </CardContent>

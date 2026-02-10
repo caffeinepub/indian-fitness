@@ -1,82 +1,66 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T04:29:05.448Z",
+  "generatedAt": "2026-02-10T09:25:45.893Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 4,
+    "total": 3,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update the existing trainer/coaches section (currently implemented in `frontend/src/components/sections/TrainerHighlights.tsx` and rendered on the homepage) to be a multi-coach “Meet Our Expert Coaches” section that displays the user-provided initial 3 coach profiles: (1) Lavesh Kodwani — “Strength, Conditioning, Weight Loss & Nutrition Expert” — “8+ years”; (2) Hemraj Dhakar — “Strength, Weight Loss” — “3+ Years”; (3) Ishika Sahu — “Zumba & Dance Fitness” (no experience provided).",
+        "summary": "Update all user-facing location text across the frontend to reflect the Kekri, Rajasthan location instead of Mumbai, including the “Visit Us” section copy, page SEO titles/descriptions, and any other hardcoded mentions of “Mumbai”, the Mumbai address, or the old phone number.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/sections/TrainerHighlights.tsx"
+          "frontend/src/pages/AboutPage.tsx",
+          "frontend/src/pages/MembershipPlansPage.tsx",
+          "frontend/src/pages/ProgramsPage.tsx",
+          "frontend/src/pages/CafePage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/sections/TrainerHighlights.tsx"
+          "frontend/src/pages/AboutPage.tsx",
+          "frontend/src/pages/MembershipPlansPage.tsx",
+          "frontend/src/pages/ProgramsPage.tsx",
+          "frontend/src/pages/CafePage.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Make the coaches list easy to maintain by centralizing the coaches data in a single, obvious frontend location (for example a config export similar to `MARKETING_CONFIG`) and update the coaches section to consume that data.",
+        "summary": "Ensure the Kekri address/contact information and map embed are sourced from the shared marketing configuration so that Footer, Contact page, map embed, and any ‘Visit Us’ blocks stay consistent.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/config/coaches.ts",
-          "frontend/src/components/sections/TrainerHighlights.tsx"
+          "frontend/src/pages/AboutPage.tsx",
+          "frontend/src/components/sections/MapEmbed.tsx",
+          "frontend/src/pages/ContactBookTrialPage.tsx",
+          "frontend/src/components/layout/Footer.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/config/coaches.ts",
-          "frontend/src/components/sections/TrainerHighlights.tsx"
+          "frontend/src/pages/AboutPage.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Prepare the Google Maps location update by ensuring the embedded map uses `MARKETING_CONFIG.googleMapsEmbedUrl` (already referenced by `frontend/src/components/sections/MapEmbed.tsx`) and document (in code comments) exactly where to paste the new Google Maps embed URL once the user provides it; do not change the current embed URL value until the user supplies the new location URL/address.",
-        "status": "implemented",
+        "summary": "Update MARKETING_CONFIG to match the user-provided Kekri location details (Visit Us in Kekri; 1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri; Kekri, Rajasthan) and ensure the configured phone number matches the intended contact number for the updated location.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/components/sections/MapEmbed.tsx",
           "frontend/src/config/marketing.ts"
         ],
-        "matchedFiles": [
-          "frontend/src/config/marketing.ts"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "When the new Google Maps location details are provided later (either a full Google Maps embed URL or an address), update location-dependent user-facing text and structured data to stay consistent across the site (map embed, contact page SEO text, and JSON-LD geo/address where applicable), using English text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/config/marketing.ts",
-          "frontend/src/components/seo/Seo.tsx",
-          "frontend/src/pages/ContactBookTrialPage.tsx",
-          "frontend/src/pages/HomePage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/config/marketing.ts",
-          "frontend/src/components/seo/Seo.tsx",
-          "frontend/src/pages/ContactBookTrialPage.tsx",
-          "frontend/src/pages/HomePage.tsx"
-        ]
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/sections/TrainerHighlights.tsx",
-    "frontend/src/components/seo/Seo.tsx",
-    "frontend/src/config/coaches.ts",
-    "frontend/src/config/marketing.ts",
-    "frontend/src/pages/ContactBookTrialPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/CafePage.tsx",
+    "frontend/src/pages/MembershipPlansPage.tsx",
+    "frontend/src/pages/ProgramsPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

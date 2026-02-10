@@ -1,93 +1,79 @@
 {
   "kind": "build_request",
-  "title": "Add multi-coach “Meet Our Expert Coaches” section and prepare Google Map location update",
+  "title": "Update all site location/contact copy and map to Kekri (replace Mumbai)",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the existing trainer/coaches section (currently implemented in `frontend/src/components/sections/TrainerHighlights.tsx` and rendered on the homepage) to be a multi-coach “Meet Our Expert Coaches” section that displays the user-provided initial 3 coach profiles: (1) Lavesh Kodwani — “Strength, Conditioning, Weight Loss & Nutrition Expert” — “8+ years”; (2) Hemraj Dhakar — “Strength, Weight Loss” — “3+ Years”; (3) Ishika Sahu — “Zumba & Dance Fitness” (no experience provided).",
+      "text": "Update all user-facing location text across the frontend to reflect the Kekri, Rajasthan location instead of Mumbai, including the “Visit Us” section copy, page SEO titles/descriptions, and any other hardcoded mentions of “Mumbai”, the Mumbai address, or the old phone number.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1",
-          "msg-2"
+          "msg-3",
+          "msg-5"
         ],
         "quotes": [
-          "creating multiple coach",
-          "1. Name: Lavesh Kodwani\nStrength, Conditioning, Weight Loss & Nutrition Expert Experiance 8+ years            \n2. Name: Hemraj Dhakar                                                                                          Strength, Weight Loss      Experiance: 3+ Years                                                                                                                          3. Ishika Sahu\nZumba & Dance Fitness"
+          "change the discription: Visit Us in Kekri",
+          "yes all are update for kekri location"
         ]
       },
       "acceptanceCriteria": [
-        "Homepage still renders a coaches grid section in the same place the current `TrainerHighlights` section appears.",
-        "Section heading uses the wording “Meet Our Expert Coaches” (English).",
-        "Exactly 3 coach cards are shown with names and specialties matching the provided text (spelling normalized only for obvious formatting issues; do not invent new specialties).",
-        "Experience is displayed for Lavesh Kodwani (“8+ years”) and Hemraj Dhakar (“3+ Years”) and is omitted (or clearly not shown) for Ishika Sahu since no experience was provided.",
-        "The implementation clearly supports adding more coaches (e.g., driven by a single array/data structure rather than hard-coded JSX per coach)."
+        "No page in the UI displays the words “Mumbai” or the old Mumbai address (“123 Fitness Street, Mumbai, Maharashtra 400001, India”).",
+        "About page ‘Visit Us’ section displays: ‘Visit Us in Kekri’ and the Kekri address provided by the user (1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri, Kekri, Rajasthan).",
+        "Any phone number shown in the UI is consistent with the location update and does not show the old number +91 98765 43210 unless it is the configured number for Kekri.",
+        "SEO titles/descriptions on pages that currently reference Mumbai are updated to reference Kekri (preferably using MARKETING_CONFIG.location.displayName/fullLocation rather than hardcoded city strings)."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Make the coaches list easy to maintain by centralizing the coaches data in a single, obvious frontend location (for example a config export similar to `MARKETING_CONFIG`) and update the coaches section to consume that data.",
+      "text": "Ensure the Kekri address/contact information and map embed are sourced from the shared marketing configuration so that Footer, Contact page, map embed, and any ‘Visit Us’ blocks stay consistent.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-5",
+          "msg-6"
         ],
         "quotes": [
-          "creating multiple coach"
+          "yes all are update for kekri location",
+          "apply"
         ]
       },
       "acceptanceCriteria": [
-        "There is a single source of truth for the coaches list (names/specialties/experience) that can be extended with additional coaches without editing the rendering logic.",
-        "`TrainerHighlights` (or its replacement) renders by mapping over the centralized coaches list."
+        "About page ‘Visit Us’ section uses MARKETING_CONFIG fields (address/city/state/country/phone/phoneFormatted) instead of hardcoded Mumbai strings.",
+        "Footer contact block continues to render from MARKETING_CONFIG and shows the Kekri address.",
+        "Contact page address card and phone link render the Kekri details from MARKETING_CONFIG.",
+        "Map iframe uses MARKETING_CONFIG.googleMapsEmbedUrl and the iframe title references Kekri via MARKETING_CONFIG.location.fullLocation."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Prepare the Google Maps location update by ensuring the embedded map uses `MARKETING_CONFIG.googleMapsEmbedUrl` (already referenced by `frontend/src/components/sections/MapEmbed.tsx`) and document (in code comments) exactly where to paste the new Google Maps embed URL once the user provides it; do not change the current embed URL value until the user supplies the new location URL/address.",
+      "text": "Update MARKETING_CONFIG to match the user-provided Kekri location details (Visit Us in Kekri; 1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri; Kekri, Rajasthan) and ensure the configured phone number matches the intended contact number for the updated location.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-3",
+          "msg-5"
         ],
         "quotes": [
-          "change the google map location"
+          "Visit Us in Kekri\n1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri\nKekri, Rajasthan",
+          "yes all are update for kekri location"
         ]
       },
       "acceptanceCriteria": [
-        "`MapEmbed` continues to read the map iframe `src` from `MARKETING_CONFIG.googleMapsEmbedUrl`.",
-        "A clear code comment exists adjacent to `googleMapsEmbedUrl` in `frontend/src/config/marketing.ts` indicating it should be replaced with the new Google Maps embed URL when provided.",
-        "No other parts of the app break due to this change (map still renders with the current URL)."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "When the new Google Maps location details are provided later (either a full Google Maps embed URL or an address), update location-dependent user-facing text and structured data to stay consistent across the site (map embed, contact page SEO text, and JSON-LD geo/address where applicable), using English text.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          "change the google map location"
-        ]
-      },
-      "acceptanceCriteria": [
-        "After providing a new location, the map iframe points to the new place.",
-        "Location text shown on the Contact/Book Trial page remains consistent with the configured address/city/state.",
-        "`frontend/src/components/seo/Seo.tsx` structured data remains consistent with the configured address and does not contain mismatched/old location details once the new location is applied."
+        "MARKETING_CONFIG.address/city/state/country reflect the Kekri address provided by the user.",
+        "All tel: links and displayed phone formatting across the site match the phone configured in MARKETING_CONFIG.",
+        "No remaining components/pages display a different address than MARKETING_CONFIG."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files listed as immutable in SYSTEM_CONTEXT (e.g., `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`).",
-    "Keep all changes within the existing single-actor backend architecture; do not introduce additional canisters/services.",
-    "Use English for any user-facing text."
+    "Frontend immutablePaths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose only).",
+    "Keep backend as a single Motoko actor; no backend changes are required for this location update."
   ],
   "nonGoals": [
-    "Implementing a backend/admin UI for editing coaches or marketing configuration.",
-    "Adding coach photos or biographies (not requested).",
-    "Changing business hours, lead capture, or other unrelated marketing content."
+    "Adding new pages or new features unrelated to the location/contact update.",
+    "Changing branding, pricing, trainers, or program offerings.",
+    "Implementing third-party integrations beyond the existing Google Maps embed URL usage."
   ],
   "imageRequirements": {
     "required": [],

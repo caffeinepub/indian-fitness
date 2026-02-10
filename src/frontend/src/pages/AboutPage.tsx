@@ -1,13 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Heart, Users, Award, Zap, Shield } from 'lucide-react';
 import Seo from '@/components/seo/Seo';
+import { MARKETING_CONFIG } from '@/config/marketing';
 
 export default function AboutPage() {
   return (
     <>
       <Seo
-        title="About Indian Fitness - Our Mission & Values | Mumbai Gym"
-        description="Learn about Indian Fitness, Mumbai's premier unisex gym and fitness studio. Discover our mission, values, and commitment to inclusive fitness for all."
+        title={`About Indian Fitness - Our Mission & Values | ${MARKETING_CONFIG.location.displayName} Gym`}
+        description={`Learn about Indian Fitness, ${MARKETING_CONFIG.location.fullLocation}'s premier unisex gym and fitness studio. Discover our mission, values, and commitment to inclusive fitness for all.`}
       />
 
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -33,7 +34,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  To empower every individual in Mumbai and beyond to achieve their fitness goals through world-class facilities, expert guidance, and a supportive community. We believe fitness is not a destination but a lifelong journey, and we're here to walk that path with you every step of the way.
+                  To empower every individual in {MARKETING_CONFIG.location.fullLocation} and beyond to achieve their fitness goals through world-class facilities, expert guidance, and a supportive community. We believe fitness is not a destination but a lifelong journey, and we're here to walk that path with you every step of the way.
                 </p>
               </CardContent>
             </Card>
@@ -177,13 +178,19 @@ export default function AboutPage() {
         {/* Location Info */}
         <section className="text-center">
           <h2 className="mb-4 text-2xl font-black uppercase">
-            Visit Us in <span className="text-gold">Mumbai</span>
+            Visit Us in <span className="text-gold">{MARKETING_CONFIG.location.displayName}</span>
           </h2>
           <p className="text-muted-foreground">
-            123 Fitness Street, Mumbai, Maharashtra 400001, India
+            {MARKETING_CONFIG.address}
+          </p>
+          <p className="text-muted-foreground">
+            {MARKETING_CONFIG.city}, {MARKETING_CONFIG.state}
+          </p>
+          <p className="text-muted-foreground">
+            {MARKETING_CONFIG.country}
           </p>
           <p className="mt-2 text-muted-foreground">
-            Phone: <a href="tel:+919876543210" className="text-gold hover:underline">+91 98765 43210</a>
+            Phone: <a href={`tel:${MARKETING_CONFIG.phone}`} className="text-gold hover:underline">{MARKETING_CONFIG.phoneFormatted}</a>
           </p>
         </section>
       </div>

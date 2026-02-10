@@ -3,13 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Coffee, Droplets, UtensilsCrossed, ArrowRight, Leaf } from 'lucide-react';
 import Seo from '@/components/seo/Seo';
+import { MARKETING_CONFIG } from '@/config/marketing';
 
 export default function CafePage() {
   return (
     <>
       <Seo
         title="Fitness Café - Healthy Meals, Protein Shakes & Smoothies | Indian Fitness"
-        description="Fuel your fitness with our healthy café. Fresh protein shakes, nutritious smoothies, and balanced meal plans. Located in Mumbai at Indian Fitness gym."
+        description={`Fuel your fitness with our healthy café. Fresh protein shakes, nutritious smoothies, and balanced meal plans. Located in ${MARKETING_CONFIG.location.fullLocation} at Indian Fitness gym.`}
       />
 
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -221,7 +222,7 @@ export default function CafePage() {
               </Button>
             </Link>
             <a
-              href="https://wa.me/919876543210"
+              href={`https://wa.me/${MARKETING_CONFIG.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
             >

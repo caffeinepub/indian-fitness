@@ -1,19 +1,49 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T04:29:05.445Z",
-  "summary": "Diff implements a multi-coach “Meet Our Expert Coaches” section driven by a centralized COACHES config, and adds clear in-code documentation next to MARKETING_CONFIG.googleMapsEmbedUrl for future Google Maps embed URL replacement. It also refactors SEO/contact copy to rely on MARKETING_CONFIG location/address fields for consistency.",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.72,
+  "generatedAt": "2026-02-10T09:25:45.891Z",
+  "summary": "Diff updates SEO metadata on several pages to use MARKETING_CONFIG.location fields and updates the MapEmbed iframe title to include full location. However, there is no evidence that MARKETING_CONFIG itself was updated to the user-provided Kekri address/phone, and the diff appears to include unrelated LeadForm behavior changes. The AboutPage truncation prevents confirming the exact “Visit Us in Kekri” heading/copy.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Update MARKETING_CONFIG to match the user-provided Kekri location details (address/city/state/country and intended phone) so all displayed/tel: phone formatting matches MARKETING_CONFIG.",
+      "reason": "No changes to the MARKETING_CONFIG file are shown in the diff summary; only pages/components import and reference MARKETING_CONFIG. Without an update to the configuration, the Kekri address/phone may not actually be configured.",
+      "evidence": [
+        "frontend/src/pages/AboutPage.tsx",
+        "frontend/src/pages/CafePage.tsx",
+        "frontend/src/pages/MembershipPlansPage.tsx",
+        "frontend/src/pages/ProgramsPage.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "About page ‘Visit Us’ section displays: ‘Visit Us in Kekri’ and the Kekri address provided by the user; and no UI shows “Mumbai”/old Mumbai address/old phone.",
+      "reason": "The AboutPage diff is truncated before the ‘Visit Us’ section, and no other diffs show removal of hardcoded “Mumbai”/old address/old phone across the entire UI. SEO strings were updated in some pages, but global verification/removal cannot be confirmed from provided evidence.",
+      "evidence": [
+        "frontend/src/pages/AboutPage.tsx (truncated)",
+        "frontend/src/pages/CafePage.tsx (truncated)",
+        "frontend/src/pages/MembershipPlansPage.tsx (truncated)",
+        "frontend/src/pages/ProgramsPage.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Lead form submission now guards based on backend actor readiness, adds loading states, and replaces technical errors with user-friendly messages.",
+      "reason": "BuildRequest explicitly states no backend changes are required and focuses only on location/contact copy updates; LeadForm behavioral changes are unrelated to the Kekri location update.",
+      "evidence": [
+        "frontend-file-summaries.txt (frontend/src/components/sections/LeadForm.tsx summary)"
+      ]
+    }
+  ],
+  "confidence": 0.62,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/sections/TrainerHighlights.tsx",
-    "frontend/src/components/seo/Seo.tsx",
-    "frontend/src/config/coaches.ts",
-    "frontend/src/config/marketing.ts",
-    "frontend/src/pages/ContactBookTrialPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/CafePage.tsx",
+    "frontend/src/pages/MembershipPlansPage.tsx",
+    "frontend/src/pages/ProgramsPage.tsx",
     "project_state.json"
   ]
 }

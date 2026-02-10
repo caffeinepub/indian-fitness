@@ -1,12 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Update the homepage coaches section to a maintainable multi-coach “Meet Our Expert Coaches” grid and prep the Google Maps embed for an upcoming location change.
+**Goal:** Update all site location/contact details and map references from Mumbai to Kekri, Rajasthan, using the shared marketing configuration for consistent rendering across the frontend.
 
 **Planned changes:**
-- Replace/update the existing `TrainerHighlights` homepage section to display a “Meet Our Expert Coaches” grid with 3 coach cards: Lavesh Kodwani, Hemraj Dhakar, and Ishika Sahu, showing specialties as provided and showing experience only where provided.
-- Centralize the coaches data (name, specialties, optional experience) in a single frontend config-style export and render the section by mapping over that list to support adding more coaches later.
-- Ensure the map embed continues to use `MARKETING_CONFIG.googleMapsEmbedUrl` and add a clear code comment in `frontend/src/config/marketing.ts` indicating exactly where to paste the new Google Maps embed URL once provided (without changing the current URL yet).
-- Add a follow-up-ready approach for applying a future location update so site location text and SEO/JSON-LD can be updated consistently once the new address/embed URL is supplied.
+- Update `MARKETING_CONFIG` to the Kekri location details: “Visit Us in Kekri”; “1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri”; “Kekri, Rajasthan” (and ensure the configured phone number matches the intended Kekri contact number).
+- Replace any remaining hardcoded “Mumbai”, the old Mumbai address, and the old phone number across all pages (including the About “Visit Us” section and any other user-facing copy).
+- Update SEO titles/descriptions that reference Mumbai to reference Kekri, preferably sourcing city/location strings from `MARKETING_CONFIG`.
+- Ensure Footer, Contact page address/phone, About “Visit Us” block, and Google Maps iframe (URL + iframe title) are all sourced from `MARKETING_CONFIG`, including `googleMapsEmbedUrl` and `location.fullLocation`.
 
-**User-visible outcome:** The homepage shows a “Meet Our Expert Coaches” section with 3 coaches in a grid, and the embedded Google Map continues to work while the code is prepared for a future location URL update.
+**User-visible outcome:** The website consistently shows the Kekri, Rajasthan address and contact info (with an updated map), and no page displays “Mumbai” or the old Mumbai address/phone number.

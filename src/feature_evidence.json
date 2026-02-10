@@ -2,10 +2,13 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-existing-trainer-coaches-section-currently-implemented-in-frontend-src-components-sections-trainerhighlights-tsx-and-rendered-on-the-homepage-to-be-a-multi-coach-meet-our-expert-coaches-section-that-displays-the-user-provided-initial-3-coach-profiles-1-lavesh-kodwani-strength-conditioning-weight-loss-nutrition-expert-8-years-2-hemraj-dhakar-strength-weight-loss-3-years-3-ishika-sahu-zumba-dance-fitness-no-experience-provided",
-      "featureTitle": "Update the existing trainer/coaches section (currently implemented in `frontend/src/components/sections/TrainerHighlights.tsx` and rendered on the homepage) to be a multi-coach “Meet Our Expert Coaches” section that displays the user-provided initial 3 coach profiles: (1) Lavesh Kodwani — “Strength, Conditioning, Weight Loss & Nutrition Expert” — “8+ years”; (2) Hemraj Dhakar — “Strength, Weight Loss” — “3+ Years”; (3) Ishika Sahu — “Zumba & Dance Fitness” (no experience provided).",
+      "featureId": "feature-update-all-user-facing-location-text-across-the-frontend-to-reflect-the-kekri-rajasthan-location-instead-of-mumbai-including-the-visit-us-section-copy-page-seo-titles-descriptions-and-any-other-hardcoded-mentions-of-mumbai-the-mumbai-address-or-the-old-phone-number",
+      "featureTitle": "Update all user-facing location text across the frontend to reflect the Kekri, Rajasthan location instead of Mumbai, including the “Visit Us” section copy, page SEO titles/descriptions, and any other hardcoded mentions of “Mumbai”, the Mumbai address, or the old phone number.",
       "files": [
-        "frontend/src/components/sections/TrainerHighlights.tsx"
+        "frontend/src/pages/AboutPage.tsx",
+        "frontend/src/pages/CafePage.tsx",
+        "frontend/src/pages/MembershipPlansPage.tsx",
+        "frontend/src/pages/ProgramsPage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -21,11 +24,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-make-the-coaches-list-easy-to-maintain-by-centralizing-the-coaches-data-in-a-single-obvious-frontend-location-for-example-a-config-export-similar-to-marketing-config-and-update-the-coaches-section-to-consume-that-data",
-      "featureTitle": "Make the coaches list easy to maintain by centralizing the coaches data in a single, obvious frontend location (for example a config export similar to `MARKETING_CONFIG`) and update the coaches section to consume that data.",
+      "featureId": "feature-ensure-the-kekri-address-contact-information-and-map-embed-are-sourced-from-the-shared-marketing-configuration-so-that-footer-contact-page-map-embed-and-any-visit-us-blocks-stay-consistent",
+      "featureTitle": "Ensure the Kekri address/contact information and map embed are sourced from the shared marketing configuration so that Footer, Contact page, map embed, and any ‘Visit Us’ blocks stay consistent.",
       "files": [
-        "frontend/src/components/sections/TrainerHighlights.tsx",
-        "frontend/src/config/coaches.ts"
+        "frontend/src/pages/AboutPage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -37,47 +39,6 @@
       ],
       "testIds": [
         "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-prepare-the-google-maps-location-update-by-ensuring-the-embedded-map-uses-marketing-config-googlemapsembedurl-already-referenced-by-frontend-src-components-sections-mapembed-tsx-and-document-in-code-comments-exactly-where-to-paste-the-new-google-maps-embed-url-once-the-user-provides-it-do-not-change-the-current-embed-url-value-until-the-user-supplies-the-new-location-url-address",
-      "featureTitle": "Prepare the Google Maps location update by ensuring the embedded map uses `MARKETING_CONFIG.googleMapsEmbedUrl` (already referenced by `frontend/src/components/sections/MapEmbed.tsx`) and document (in code comments) exactly where to paste the new Google Maps embed URL once the user provides it; do not change the current embed URL value until the user supplies the new location URL/address.",
-      "files": [
-        "frontend/src/config/marketing.ts"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-when-the-new-google-maps-location-details-are-provided-later-either-a-full-google-maps-embed-url-or-an-address-update-location-dependent-user-facing-text-and-structured-data-to-stay-consistent-across-the-site-map-embed-contact-page-seo-text-and-json-ld-geo-address-where-applicable-using-english-text",
-      "featureTitle": "When the new Google Maps location details are provided later (either a full Google Maps embed URL or an address), update location-dependent user-facing text and structured data to stay consistent across the site (map embed, contact page SEO text, and JSON-LD geo/address where applicable), using English text.",
-      "files": [
-        "frontend/src/components/seo/Seo.tsx",
-        "frontend/src/config/marketing.ts",
-        "frontend/src/pages/ContactBookTrialPage.tsx",
-        "frontend/src/pages/HomePage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
       ],
       "confidence": "high"
     }

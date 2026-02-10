@@ -9,16 +9,21 @@ interface LeadSubmission {
 }
 
 export function useSubmitLead() {
-  const { actor } = useActor();
+  const { actor, isFetching } = useActor();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (lead: LeadSubmission) => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) {
+        throw new Error('The system is still loading. Please wait a moment and try again.');
+      }
       await actor.submitLead(lead.name, lead.email, lead.company, lead.message);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['leads'] });
+    },
+    meta: {
+      actorReady: !!actor && !isFetching,
     },
   });
 }

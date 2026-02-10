@@ -27,7 +27,7 @@ export default function Header() {
             alt={BRANDING.logo.alt}
             className="h-10 w-10 md:h-12 md:w-12"
           />
-          <span className="text-xl font-bold tracking-tight text-gold md:text-2xl">
+          <span className="text-xl font-bold tracking-tight text-green-accent md:text-2xl">
             {BRANDING.companyName}
           </span>
         </Link>
@@ -38,7 +38,7 @@ export default function Header() {
             <Link key={link.path} to={link.path}>
               <Button
                 variant={currentPath === link.path ? 'default' : 'ghost'}
-                className="font-semibold"
+                className={currentPath === link.path ? 'bg-green-accent text-black hover:bg-green-accent/90' : 'hover:text-green-accent'}
               >
                 {link.label}
               </Button>
@@ -53,9 +53,9 @@ export default function Header() {
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? (
-            <X className="h-6 w-6 text-gold" />
+            <X className="h-6 w-6 text-green-accent" />
           ) : (
-            <Menu className="h-6 w-6 text-gold" />
+            <Menu className="h-6 w-6 text-green-accent" />
           )}
         </button>
       </div>
@@ -68,7 +68,7 @@ export default function Header() {
               <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)}>
                 <Button
                   variant={currentPath === link.path ? 'default' : 'ghost'}
-                  className="w-full justify-start font-semibold"
+                  className={`w-full justify-start ${currentPath === link.path ? 'bg-green-accent text-black hover:bg-green-accent/90' : 'hover:text-green-accent'}`}
                 >
                   {link.label}
                 </Button>

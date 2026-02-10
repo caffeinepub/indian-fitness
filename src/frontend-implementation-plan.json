@@ -1,95 +1,85 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Multi-coach section + Google Maps location configuration prep",
+  "title": "Replace Mumbai location/contact copy with Kekri across frontend and centralize via MARKETING_CONFIG",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the current trainer highlights with a multi-coach “Meet Our Expert Coaches” section showing exactly the 3 provided coaches with correct specialties and optional experience.",
+      "summary": "Replace all remaining Mumbai/old address/old phone references in UI copy and SEO metadata with Kekri, Rajasthan details.",
       "acceptanceCriteria": [
-        "Homepage still renders a coaches grid section in the same place the current `TrainerHighlights` section appears.",
-        "Section heading uses the wording “Meet Our Expert Coaches” (English).",
-        "Exactly 3 coach cards are shown with names and specialties matching the provided text (spelling normalized only for obvious formatting issues; do not invent new specialties).",
-        "Experience is displayed for Lavesh Kodwani (“8+ years”) and Hemraj Dhakar (“3+ Years”) and is omitted (or clearly not shown) for Ishika Sahu since no experience was provided.",
-        "The implementation clearly supports adding more coaches (e.g., driven by a single array/data structure rather than hard-coded JSX per coach)."
+        "No page in the UI displays the words “Mumbai” or the old Mumbai address (“123 Fitness Street, Mumbai, Maharashtra 400001, India”).",
+        "About page ‘Visit Us’ section displays: ‘Visit Us in Kekri’ and the Kekri address provided by the user (1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri, Kekri, Rajasthan).",
+        "Any phone number shown in the UI is consistent with the location update and does not show the old number +91 98765 43210 unless it is the configured number for Kekri.",
+        "SEO titles/descriptions on pages that currently reference Mumbai are updated to reference Kekri (preferably using MARKETING_CONFIG.location.displayName/fullLocation rather than hardcoded city strings)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/sections/TrainerHighlights.tsx",
+          "path": "frontend/src/pages/AboutPage.tsx",
           "operation": "modify",
-          "description": "Update the section copy to the heading “Meet Our Expert Coaches” and render coach cards by mapping over the centralized coaches list (names, specialties, and optional experience). Ensure experience only renders when present (no placeholder for Ishika Sahu). Keep the section placement/usage unchanged so the homepage continues to render it where it currently does."
+          "description": "Remove all hardcoded Mumbai references (SEO title/description, mission copy, and the 'Visit Us' block). Update the 'Visit Us' section headline to 'Visit Us in Kekri' and ensure address/phone render from shared marketing configuration (no old Mumbai address or +91 98765 43210 remains)."
+        },
+        {
+          "path": "frontend/src/pages/MembershipPlansPage.tsx",
+          "operation": "modify",
+          "description": "Update SEO title/description to remove 'Mumbai' and reference Kekri via MARKETING_CONFIG.location.displayName/fullLocation (import MARKETING_CONFIG as needed)."
+        },
+        {
+          "path": "frontend/src/pages/ProgramsPage.tsx",
+          "operation": "modify",
+          "description": "Update SEO description to remove 'Mumbai' and reference Kekri via MARKETING_CONFIG.location.fullLocation (import MARKETING_CONFIG as needed)."
+        },
+        {
+          "path": "frontend/src/pages/CafePage.tsx",
+          "operation": "modify",
+          "description": "Update SEO description to remove 'Mumbai' and reference Kekri via MARKETING_CONFIG.location.fullLocation (import MARKETING_CONFIG as needed)."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Centralize the coaches list into a single maintainable frontend export and have the coaches section consume it.",
+      "summary": "Ensure all address/contact fields and map embed are consistently sourced from MARKETING_CONFIG across the frontend (Footer, Contact page, map, and Visit Us blocks).",
       "acceptanceCriteria": [
-        "There is a single source of truth for the coaches list (names/specialties/experience) that can be extended with additional coaches without editing the rendering logic.",
-        "`TrainerHighlights` (or its replacement) renders by mapping over the centralized coaches list."
+        "About page ‘Visit Us’ section uses MARKETING_CONFIG fields (address/city/state/country/phone/phoneFormatted) instead of hardcoded Mumbai strings.",
+        "Footer contact block continues to render from MARKETING_CONFIG and shows the Kekri address.",
+        "Contact page address card and phone link render the Kekri details from MARKETING_CONFIG.",
+        "Map iframe uses MARKETING_CONFIG.googleMapsEmbedUrl and the iframe title references Kekri via MARKETING_CONFIG.location.fullLocation."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/config/coaches.ts",
-          "operation": "create",
-          "description": "Create a dedicated coaches config export (single source of truth) containing an array for the initial 3 coach profiles: Lavesh Kodwani (specialty text exactly as provided, experience “8+ years”), Hemraj Dhakar (specialty text exactly as provided, experience “3+ Years”), Ishika Sahu (specialty text exactly as provided, no experience field). Structure the type to support adding more coaches later without changing rendering logic."
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Refactor the About page 'Visit Us' section to render address/city/state/country and tel: link from MARKETING_CONFIG (and align the heading text with the config-driven Kekri location)."
         },
         {
-          "path": "frontend/src/components/sections/TrainerHighlights.tsx",
+          "path": "frontend/src/components/sections/MapEmbed.tsx",
           "operation": "modify",
-          "description": "Import the centralized coaches list from the new config file and replace the internal hard-coded array/JSX with a map over the config-driven data."
+          "description": "Confirm the Google Maps iframe src uses MARKETING_CONFIG.googleMapsEmbedUrl and the iframe title references MARKETING_CONFIG.location.fullLocation (update if any hardcoded values exist)."
+        },
+        {
+          "path": "frontend/src/pages/ContactBookTrialPage.tsx",
+          "operation": "modify",
+          "description": "Confirm all displayed contact details and links (address lines, tel:, mailto:) render from MARKETING_CONFIG and remain consistent with the updated Kekri configuration."
+        },
+        {
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "modify",
+          "description": "Confirm the footer contact block renders fully from MARKETING_CONFIG (address lines and tel: link) and shows Kekri details consistently."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Ensure the Google Map embed continues using MARKETING_CONFIG.googleMapsEmbedUrl and add an in-code note showing where to paste the new embed URL later.",
+      "summary": "Update MARKETING_CONFIG to match the provided Kekri location details and ensure the configured phone number is the intended Kekri contact number.",
       "acceptanceCriteria": [
-        "`MapEmbed` continues to read the map iframe `src` from `MARKETING_CONFIG.googleMapsEmbedUrl`.",
-        "A clear code comment exists adjacent to `googleMapsEmbedUrl` in `frontend/src/config/marketing.ts` indicating it should be replaced with the new Google Maps embed URL when provided.",
-        "No other parts of the app break due to this change (map still renders with the current URL)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/sections/MapEmbed.tsx",
-          "operation": "modify",
-          "description": "Verify/retain that the iframe src reads from MARKETING_CONFIG.googleMapsEmbedUrl (no hard-coded URL). Keep rendering behavior unchanged."
-        },
-        {
-          "path": "frontend/src/config/marketing.ts",
-          "operation": "modify",
-          "description": "Add a clear code comment immediately adjacent to googleMapsEmbedUrl explaining exactly where to paste/replace the new Google Maps embed URL once the user provides it, and explicitly note not to change the current value until then."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Prepare site-wide location consistency by centralizing location-dependent copy/structured data inputs so future location updates can be applied uniformly (map embed, contact SEO text, JSON-LD geo/address).",
-      "acceptanceCriteria": [
-        "After providing a new location, the map iframe points to the new place.",
-        "Location text shown on the Contact/Book Trial page remains consistent with the configured address/city/state.",
-        "`frontend/src/components/seo/Seo.tsx` structured data remains consistent with the configured address and does not contain mismatched/old location details once the new location is applied."
+        "MARKETING_CONFIG.address/city/state/country reflect the Kekri address provided by the user.",
+        "All tel: links and displayed phone formatting across the site match the phone configured in MARKETING_CONFIG.",
+        "No remaining components/pages display a different address than MARKETING_CONFIG."
       ],
       "file_operations": [
         {
           "path": "frontend/src/config/marketing.ts",
           "operation": "modify",
-          "description": "Add a dedicated, centralized location configuration area to support future updates consistently (e.g., JSON-LD geo coordinates and reusable location label fields for page titles/descriptions). Include code comments indicating which fields to update when the new address/embed URL is provided later, without changing the current embed URL value now."
-        },
-        {
-          "path": "frontend/src/components/seo/Seo.tsx",
-          "operation": "modify",
-          "description": "Refactor the JSON-LD structured data to pull address/geo/location-related values from MARKETING_CONFIG (instead of hard-coded geo/address fragments) so that a future MARKETING_CONFIG location update keeps structured data consistent automatically."
-        },
-        {
-          "path": "frontend/src/pages/ContactBookTrialPage.tsx",
-          "operation": "modify",
-          "description": "Update the Seo title/description strings to be derived from MARKETING_CONFIG location fields (or centralized marketing/location text helpers) so contact page SEO copy stays consistent when location is updated later. Keep user-facing text in English."
-        },
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Update the Seo title/description strings (currently referencing a specific city) to use MARKETING_CONFIG-driven location text so future location updates do not leave stale city/location references in the homepage SEO copy. Keep user-facing text in English."
+          "description": "Set/verify MARKETING_CONFIG fields for Kekri: address '1st Floor K.J Tower Above B.O.B Bank Ajmer Road Kekri', city 'Kekri', state 'Rajasthan', country 'India'; and confirm phone/phoneFormatted/whatsappNumber reflect the intended Kekri contact number (ensuring no legacy Mumbai number is used anywhere)."
         }
       ]
     }

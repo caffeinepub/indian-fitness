@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website project with editable business info, including updating the Google Map location and adding a multi-coach 'Meet Our Expert Coaches' section.",
+  "architectural_notes": [
+    "Implement coaches as a repeatable list/collection (supports adding more coaches later) with fields: name, specialties, experience (years)."
+  ],
+  "known_issues": [
+    "New Google Maps location not yet provided (address or full Maps URL needed to complete map update)."
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-update-the-existing-trainer-coaches-section-currently-implemented-in-frontend-src-components-sections-trainerhighlights-tsx-and-rendered-on-the-homepage-to-be-a-multi-coach-meet-our-expert-coaches-section-that-displays-the-user-provided-initial-3-coach-profiles-1-lavesh-kodwani-strength-conditioning-weight-loss-nutrition-expert-8-years-2-hemraj-dhakar-strength-weight-loss-3-years-3-ishika-sahu-zumba-dance-fitness-no-experience-provided",
+      "title": "Update the existing trainer/coaches section (currently implemented in `frontend/src/components/sections/TrainerHighlights.tsx` and rendered on the homepage) to be a multi-coach “Meet Our Expert Coaches” section that displays the user-provided initial 3 coach profiles: (1) Lavesh Kodwani — “Strength, Conditioning, Weight Loss & Nutrition Expert” — “8+ years”; (2) Hemraj Dhakar — “Strength, Weight Loss” — “3+ Years”; (3) Ishika Sahu — “Zumba & Dance Fitness” (no experience provided).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-coaches-list-easy-to-maintain-by-centralizing-the-coaches-data-in-a-single-obvious-frontend-location-for-example-a-config-export-similar-to-marketing-config-and-update-the-coaches-section-to-consume-that-data",
+      "title": "Make the coaches list easy to maintain by centralizing the coaches data in a single, obvious frontend location (for example a config export similar to `MARKETING_CONFIG`) and update the coaches section to consume that data.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-prepare-the-google-maps-location-update-by-ensuring-the-embedded-map-uses-marketing-config-googlemapsembedurl-already-referenced-by-frontend-src-components-sections-mapembed-tsx-and-document-in-code-comments-exactly-where-to-paste-the-new-google-maps-embed-url-once-the-user-provides-it-do-not-change-the-current-embed-url-value-until-the-user-supplies-the-new-location-url-address",
+      "title": "Prepare the Google Maps location update by ensuring the embedded map uses `MARKETING_CONFIG.googleMapsEmbedUrl` (already referenced by `frontend/src/components/sections/MapEmbed.tsx`) and document (in code comments) exactly where to paste the new Google Maps embed URL once the user provides it; do not change the current embed URL value until the user supplies the new location URL/address.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-the-new-google-maps-location-details-are-provided-later-either-a-full-google-maps-embed-url-or-an-address-update-location-dependent-user-facing-text-and-structured-data-to-stay-consistent-across-the-site-map-embed-contact-page-seo-text-and-json-ld-geo-address-where-applicable-using-english-text",
+      "title": "When the new Google Maps location details are provided later (either a full Google Maps embed URL or an address), update location-dependent user-facing text and structured data to stay consistent across the site (map embed, contact page SEO text, and JSON-LD geo/address where applicable), using English text.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Update the embedded Google Map location on the site (pending exact new address/URL).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create a 'Meet Our Expert Coaches' section that supports multiple coaches and add initial 3 profiles (Lavesh Kodwani, Hemraj Dhakar, Ishika Sahu).",
+      "reqIds": [],
+      "status": "in_progress"
+    }
+  ],
+  "projectName": "Add multi-coach “Meet Our Expert Coaches” section and prepare Google Map location update",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

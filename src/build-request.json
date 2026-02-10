@@ -1,0 +1,106 @@
+{
+  "kind": "build_request",
+  "title": "Add multi-coach “Meet Our Expert Coaches” section and prepare Google Map location update",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Update the existing trainer/coaches section (currently implemented in `frontend/src/components/sections/TrainerHighlights.tsx` and rendered on the homepage) to be a multi-coach “Meet Our Expert Coaches” section that displays the user-provided initial 3 coach profiles: (1) Lavesh Kodwani — “Strength, Conditioning, Weight Loss & Nutrition Expert” — “8+ years”; (2) Hemraj Dhakar — “Strength, Weight Loss” — “3+ Years”; (3) Ishika Sahu — “Zumba & Dance Fitness” (no experience provided).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "creating multiple coach",
+          "1. Name: Lavesh Kodwani\nStrength, Conditioning, Weight Loss & Nutrition Expert Experiance 8+ years            \n2. Name: Hemraj Dhakar                                                                                          Strength, Weight Loss      Experiance: 3+ Years                                                                                                                          3. Ishika Sahu\nZumba & Dance Fitness"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Homepage still renders a coaches grid section in the same place the current `TrainerHighlights` section appears.",
+        "Section heading uses the wording “Meet Our Expert Coaches” (English).",
+        "Exactly 3 coach cards are shown with names and specialties matching the provided text (spelling normalized only for obvious formatting issues; do not invent new specialties).",
+        "Experience is displayed for Lavesh Kodwani (“8+ years”) and Hemraj Dhakar (“3+ Years”) and is omitted (or clearly not shown) for Ishika Sahu since no experience was provided.",
+        "The implementation clearly supports adding more coaches (e.g., driven by a single array/data structure rather than hard-coded JSX per coach)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Make the coaches list easy to maintain by centralizing the coaches data in a single, obvious frontend location (for example a config export similar to `MARKETING_CONFIG`) and update the coaches section to consume that data.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "creating multiple coach"
+        ]
+      },
+      "acceptanceCriteria": [
+        "There is a single source of truth for the coaches list (names/specialties/experience) that can be extended with additional coaches without editing the rendering logic.",
+        "`TrainerHighlights` (or its replacement) renders by mapping over the centralized coaches list."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Prepare the Google Maps location update by ensuring the embedded map uses `MARKETING_CONFIG.googleMapsEmbedUrl` (already referenced by `frontend/src/components/sections/MapEmbed.tsx`) and document (in code comments) exactly where to paste the new Google Maps embed URL once the user provides it; do not change the current embed URL value until the user supplies the new location URL/address.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "change the google map location"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`MapEmbed` continues to read the map iframe `src` from `MARKETING_CONFIG.googleMapsEmbedUrl`.",
+        "A clear code comment exists adjacent to `googleMapsEmbedUrl` in `frontend/src/config/marketing.ts` indicating it should be replaced with the new Google Maps embed URL when provided.",
+        "No other parts of the app break due to this change (map still renders with the current URL)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "When the new Google Maps location details are provided later (either a full Google Maps embed URL or an address), update location-dependent user-facing text and structured data to stay consistent across the site (map embed, contact page SEO text, and JSON-LD geo/address where applicable), using English text.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "change the google map location"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After providing a new location, the map iframe points to the new place.",
+        "Location text shown on the Contact/Book Trial page remains consistent with the configured address/city/state.",
+        "`frontend/src/components/seo/Seo.tsx` structured data remains consistent with the configured address and does not contain mismatched/old location details once the new location is applied."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files listed as immutable in SYSTEM_CONTEXT (e.g., `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`).",
+    "Keep all changes within the existing single-actor backend architecture; do not introduce additional canisters/services.",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Implementing a backend/admin UI for editing coaches or marketing configuration.",
+    "Adding coach photos or biographies (not requested).",
+    "Changing business hours, lead capture, or other unrelated marketing content."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T04:29:05.445Z",
+  "summary": "Diff implements a multi-coach “Meet Our Expert Coaches” section driven by a centralized COACHES config, and adds clear in-code documentation next to MARKETING_CONFIG.googleMapsEmbedUrl for future Google Maps embed URL replacement. It also refactors SEO/contact copy to rely on MARKETING_CONFIG location/address fields for consistency.",
+  "missing_requirements": [],
+  "hallucinated_features": [],
+  "confidence": 0.72,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/sections/TrainerHighlights.tsx",
+    "frontend/src/components/seo/Seo.tsx",
+    "frontend/src/config/coaches.ts",
+    "frontend/src/config/marketing.ts",
+    "frontend/src/pages/ContactBookTrialPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "project_state.json"
+  ]
+}
